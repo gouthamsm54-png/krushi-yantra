@@ -102,16 +102,16 @@ body {
   background-color: var(--bg-body);
 }
 
-/* Real Agricultural Farming & Farmland Photo Layer (Clean watermark presence) */
+/* Real Agricultural Farming & Farmland Photo Layer (Clean aerial terraced fields) */
 .ambient-farm-image-layer {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/farmers_field_bg.jpg');
+  background-image: url('../assets/farm_aerial_zones_bg.jpg');
   background-size: cover;
-  background-position: center 36%;
+  background-position: center center;
   background-attachment: fixed;
-  opacity: 0.12;
-  filter: saturate(1.15) brightness(1.02);
+  opacity: 0.20;
+  filter: saturate(1.2) brightness(1.02);
   pointer-events: none;
   animation: bgSlowPan 90s ease-in-out infinite alternate;
 }
@@ -128,7 +128,7 @@ body {
   inset: 0;
   background: radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.05) 0%, transparent 40%),
               radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.05) 0%, transparent 40%),
-              linear-gradient(180deg, rgba(248, 250, 252, 0.80) 0%, rgba(241, 245, 249, 0.90) 100%);
+              linear-gradient(180deg, rgba(248, 250, 252, 0.65) 0%, rgba(241, 245, 249, 0.78) 100%);
   pointer-events: none;
 }
 
