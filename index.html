@@ -1,0 +1,2847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="One Acre Intelligent Farm - AI-Powered Precision Agriculture System with 8 Intelligent Zones, Smart Irrigation, Plant Health Screening, and Night Security.">
+  <title>One Acre Intelligent Farm • Agricultural Control Center</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+</head>
+
+<body>
+
+  <!-- Ambient Living Farm Animated Background Layer with Real Agricultural Imagery -->
+  <div class="ambient-bg-wrapper" aria-hidden="true">
+    <div class="ambient-farm-image-layer"></div>
+    <div class="ambient-farm-scenery-overlay"></div>
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+    <div class="ambient-orb ambient-orb-4"></div>
+    <div class="ambient-grid-pattern"></div>
+    <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+  </div>
+
+  <!-- ========================================================
+       SIDEBAR NAVIGATION
+       ======================================================== -->
+  <aside id="farm-sidebar" class="sidebar" aria-label="Sidebar Navigation">
+
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">🌾</div>
+      <div class="sidebar-title-wrap">
+        <h1 class="sidebar-app-name" data-i18n="appName">ONE ACRE</h1>
+        <span class="sidebar-app-tagline" data-i18n="appTagline">Intelligent Farm</span>
+      </div>
+    </div>
+
+    <!-- Voice Assistant Direct Launch Button in Sidebar for Farmers -->
+    <div style="padding: 12px 16px 4px 16px;">
+      <button id="btn-sidebar-voice" class="btn-header-voice"
+        style="width: 100%; justify-content: center; font-size: 0.9rem; padding: 10px 14px;"
+        aria-label="Open Voice Assistant">
+        <span style="font-size: 1.2rem;">🎙️</span>
+        <span data-i18n="voiceBuddyBtn">किसान मित्र</span>
+      </button>
+    </div>
+
+    <!-- System Architecture Paradigm -->
+    <div class="paradigm-banner">
+      SENSE • ANALYZE • DECIDE<br>ACT • MONITOR • OPTIMIZE
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="sidebar-nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span data-i18n="navDashboard">Dashboard</span>
+      </a>
+
+      <a href="#farm-zones" class="sidebar-nav-item">
+        <span class="nav-icon">🗺️</span>
+        <span data-i18n="navFarmZones">Farm Zones</span>
+      </a>
+
+      <a href="#soil-analysis" class="sidebar-nav-item" id="nav-link-soil">
+        <span class="nav-icon">🧪</span>
+        <span data-i18n="navSoilAnalysis">Soil Testing & Fertility</span>
+      </a>
+
+      <a href="#crop-intelligence" class="sidebar-nav-item">
+        <span class="nav-icon">🌱</span>
+        <span data-i18n="navCropIntelligence">Crop Intelligence</span>
+      </a>
+
+      <a href="#smart-irrigation" class="sidebar-nav-item">
+        <span class="nav-icon">💧</span>
+        <span data-i18n="navIrrigation">Irrigation</span>
+      </a>
+
+      <a href="#plant-health" class="sidebar-nav-item">
+        <span class="nav-icon">🩺</span>
+        <span data-i18n="navPlantHealth">Plant Health</span>
+      </a>
+
+      <a href="#farm-security" class="sidebar-nav-item">
+        <span class="nav-icon">🛡️</span>
+        <span data-i18n="navFarmSecurity">Farm Security</span>
+      </a>
+
+      <a href="#weather-environment" class="sidebar-nav-item">
+        <span class="nav-icon">🌦️</span>
+        <span data-i18n="navWeather">Weather</span>
+      </a>
+
+      <a href="#analytics" class="sidebar-nav-item">
+        <span class="nav-icon">📊</span>
+        <span data-i18n="navAnalytics">Analytics</span>
+      </a>
+
+      <a href="#farm-economics" class="sidebar-nav-item">
+        <span class="nav-icon">💰</span>
+        <span data-i18n="navEconomics">Economics</span>
+      </a>
+
+      <a href="#post-harvest-market" class="sidebar-nav-item">
+        <span class="nav-icon">📦</span>
+        <span data-i18n="navPostHarvest">Direct Sales & Zero Waste</span>
+      </a>
+
+      <a href="#alert-center" class="sidebar-nav-item">
+        <span class="nav-icon">🔔</span>
+        <span data-i18n="navAlerts">Alerts</span>
+      </a>
+
+      <a href="#iot-settings-modal" id="btn-open-iot-settings" class="sidebar-nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span data-i18n="navSettings">Settings / IoT</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="iot-status-indicator">
+        <span class="pulse-dot active"></span>
+        <span data-i18n="meshLive">ESP32 Mesh Live</span>
+      </div>
+      <span data-i18n="meshSummary">1 Acre • 8 Zones Automated</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       MAIN WRAPPER
+       ======================================================== -->
+  <div class="main-wrapper">
+
+    <!-- Top App Bar -->
+    <header class="top-nav">
+      <div class="top-left-block">
+        <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
+        <div>
+          <div class="top-project-title" data-i18n="headerTitle">🌾 ONE ACRE INTELLIGENT FARM</div>
+          <div class="top-project-tagline" data-i18n="headerTagline">“Smart Farm → Healthy Crops → Safe Land → Higher
+            Income”</div>
+        </div>
+      </div>
+
+      <div class="top-right-block">
+        <!-- Native Language Selector Dropdown -->
+        <div class="lang-select-wrap" title="Select Native Language / अपनी भाषा चुनें">
+          <span style="font-size: 1rem;">🌐</span>
+          <select id="top-language-select" class="lang-select" aria-label="Language Selector"></select>
+        </div>
+
+        <!-- Voice Assistant Direct Trigger -->
+        <button id="btn-header-voice" class="btn-header-voice" aria-label="Open Voice Assistant"
+          title="बोलो और सुनो / Talk to Voice Assistant">
+          <span style="font-size: 1.1rem;">🎙️</span>
+          <span data-i18n="voiceBuddyBtn">किसान मित्र</span>
+        </button>
+
+        <!-- Live Date & Time Clock -->
+        <div class="live-clock-badge">
+          <span>🕒</span>
+          <span id="live-datetime">Wed, Oct 27, 2026 • 02:45 PM</span>
+        </div>
+
+        <!-- Overall Farm Status Badge -->
+        <span id="farm-status-badge" class="farm-status-badge status-attention">
+          <span class="pulse-dot idle" style="background:#d97706;"></span>
+          <span data-i18n="liveStatusAttention">Status: Attention</span>
+        </span>
+
+        <div class="top-action-icons">
+          <!-- Notification Alert Bell -->
+          <a href="#alert-center" class="top-icon-btn" title="View Active Alerts" aria-label="Alerts">
+            <span>🔔</span>
+            <span class="badge-count">2</span>
+          </a>
+
+          <!-- Farmer Profile / Settings -->
+          <button class="top-icon-btn"
+            onclick="document.getElementById('iot-settings-modal').classList.add('modal-open')"
+            title="ESP32 IoT Gateway Settings" aria-label="Settings">
+            <span>⚙️</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="content-body">
+
+      <!-- ========================================================
+           SECTION 1: DASHBOARD & FARM OVERVIEW CARDS
+           ======================================================== -->
+      <section id="dashboard" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secOverviewTitle">📊 1-Acre Real-Time Overview</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('dashboard')"
+              title="Listen to summary / सारांश सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secOverviewSubtitle">Continuous sensor telemetry
+            aggregated from 8 micro-zoned agricultural plots</div>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Card 1: Total Zones -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardTotalZones">Total Zones</span>
+              <div class="metric-icon-wrap" style="color:var(--primary-dark);">🗺️</div>
+            </div>
+            <div id="ov-total-zones" class="metric-val">8</div>
+            <div class="metric-bottom">1.0 Acre Total Farm Area</div>
+          </div>
+
+          <!-- Card 2: Healthy Zones -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardHealthyZones">Healthy Zones</span>
+              <div class="metric-icon-wrap" style="color:var(--primary);">🌱</div>
+            </div>
+            <div id="ov-healthy-zones" class="metric-val text-success">6/8</div>
+            <div class="metric-bottom">
+              <span class="metric-pill" style="background:var(--primary-light); color:var(--primary-dark);">75% Peak
+                Health</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Average Soil Moisture -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardAvgMoisture">Avg Soil Moisture</span>
+              <div class="metric-icon-wrap" style="color:var(--water);">💧</div>
+            </div>
+            <div id="ov-avg-moisture" class="metric-val">48%</div>
+            <div class="metric-bottom">Target: 45% - 55% Across Plots</div>
+          </div>
+
+          <!-- Card 4: Average Temperature -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardAvgTemp">Avg Temperature</span>
+              <div class="metric-icon-wrap" style="color:var(--sun);">🌡️</div>
+            </div>
+            <div id="ov-avg-temp" class="metric-val">27°C</div>
+            <div class="metric-bottom">Micro-Station: Optimal Photosynthesis</div>
+          </div>
+
+          <!-- Card 5: Water Tank Level -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardWaterTank">Water Tank Level</span>
+              <div class="metric-icon-wrap" style="color:var(--water);">🚰</div>
+            </div>
+            <div id="ov-tank-level" class="metric-val text-primary-water">68%</div>
+            <div class="metric-bottom">13,600 L / 20,000 L Available</div>
+          </div>
+
+          <!-- Card 6: Pump Status -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardPumpStatus">Pump Status</span>
+              <div class="metric-icon-wrap" style="color:var(--water);">⚡</div>
+            </div>
+            <div id="ov-pump-status" class="metric-val">ON</div>
+            <div class="metric-bottom">
+              <div id="ov-pump-pill" class="metric-pill pill-active-pump">
+                <span class="pulse-dot active"></span> Pumping (Zone 04)
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 7: Today's Water Usage -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardWaterUsage">Today's Water Usage</span>
+              <div class="metric-icon-wrap" style="color:var(--water);">🚿</div>
+            </div>
+            <div id="ov-water-usage" class="metric-val">320 L</div>
+            <div class="metric-bottom">Weekly Total: 2,140 L</div>
+          </div>
+
+          <!-- Card 8: Active Alerts -->
+          <div class="metric-card">
+            <div class="metric-top">
+              <span class="metric-title" data-i18n="cardActiveAlerts">Active Alerts</span>
+              <div class="metric-icon-wrap" style="color:var(--danger);">⚠️</div>
+            </div>
+            <div id="ov-active-alerts" class="metric-val text-danger">2</div>
+            <div class="metric-bottom">1 Soil Moisture • 1 Wildlife Deterred</div>
+          </div>
+        </div>
+
+        <!-- 24-Hour Historical Farm Telemetry Analysis on Dashboard -->
+        <div class="dash-history-card">
+          <div class="dash-history-header">
+            <div>
+              <h3 class="dash-history-title">📈 24-Hour Historical Farm Telemetry & Trend Analysis</h3>
+              <p class="dash-history-subtitle">Continuous diurnal sensor aggregation across 8 micro-plots (Moisture,
+                Pumping, Temp, Humidity)</p>
+            </div>
+            <a href="#analytics" class="btn-dash-deep-analytics"
+              onclick="setTimeout(() => FarmCharts.renderAllCharts(), 150)">
+              <span>Explore Full Analytics</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <div class="dash-sparklines-grid">
+            <!-- Sparkline 1: Soil Moisture -->
+            <div class="dash-sparkline-item">
+              <div class="dash-sparkline-top">
+                <span class="spark-label">💧 Soil Moisture History</span>
+                <span class="spark-stat" style="color:var(--primary);">48% avg</span>
+              </div>
+              <div class="dash-sparkline-canvas-box">
+                <canvas id="dash-spark-moisture"></canvas>
+              </div>
+              <span class="spark-sub">8-Point Day Curve • Range 44% - 51%</span>
+            </div>
+
+            <!-- Sparkline 2: Water Usage -->
+            <div class="dash-sparkline-item">
+              <div class="dash-sparkline-top">
+                <span class="spark-label">🚰 Water Pumping Rate</span>
+                <span class="spark-stat" style="color:var(--water);">320 L today</span>
+              </div>
+              <div class="dash-sparkline-canvas-box">
+                <canvas id="dash-spark-water"></canvas>
+              </div>
+              <span class="spark-sub">Solar Pump Cycle • Peak 90 L @ 08:00</span>
+            </div>
+
+            <!-- Sparkline 3: Ambient Temp -->
+            <div class="dash-sparkline-item">
+              <div class="dash-sparkline-top">
+                <span class="spark-label">🌡️ Temperature Fluctuation</span>
+                <span class="spark-stat" style="color:var(--sun);">27°C avg</span>
+              </div>
+              <div class="dash-sparkline-canvas-box">
+                <canvas id="dash-spark-temp"></canvas>
+              </div>
+              <span class="spark-sub">Micro-climate • Min 20°C / Max 30°C</span>
+            </div>
+
+            <!-- Sparkline 4: Relative Humidity -->
+            <div class="dash-sparkline-item">
+              <div class="dash-sparkline-top">
+                <span class="spark-label">🍃 Relative Humidity Curve</span>
+                <span class="spark-stat" style="color:#059669;">62% RH</span>
+              </div>
+              <div class="dash-sparkline-canvas-box">
+                <canvas id="dash-spark-humidity"></canvas>
+              </div>
+              <span class="spark-sub">Photosynthesis Vapor • Nominal</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 2: 8-ZONE INTERACTIVE FARM MAP
+           ======================================================== -->
+      <section id="farm-zones" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secZonesTitle">🗺️ 8-Zone Precision Farm Layout</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('farm-zones')"
+              title="Listen to layout / नक्शा सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secZonesSubtitle">Interactive map of 1-acre
+            divided into 8 intelligent 0.125-acre plots. Click any zone for deep telemetry.</div>
+          <div style="font-size:0.78rem; color:var(--text-muted); display:flex; gap:12px; margin-top:4px;">
+            <span>🟢 Green = Healthy</span>
+            <span>🟡 Yellow = Needs Attention</span>
+            <span>🔴 Red = Critical</span>
+          </div>
+        </div>
+
+        <div class="farm-map-layout-card">
+          <div class="farm-dimension-banner">
+            <span>📐 <strong>One Acre Grid Geometry:</strong> 208.7 ft × 208.7 ft (43,560 sq.ft) Divided into 8
+              Autonomous Sub-Units</span>
+            <span>⚡ Automated Sub-surface Drip & Sensor Node Mesh</span>
+          </div>
+
+          <!-- 8 Zone Grid: ZONE 01 - 04 (Row 1), ZONE 05 - 08 (Row 2) -->
+          <div id="farm-zones-grid" class="zones-grid">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 2B: KRUSHI YANTRA - INDIVIDUAL ZONE SOIL ANALYSIS & FERTILITY DASHBOARD
+           ======================================================== -->
+      <section id="soil-analysis" class="section-container">
+        <!-- Section Header -->
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title">🌱 Krushi Yantra • Soil Testing & Fertility Intelligence</h2>
+            <span class="icar-badge">🔬 ICAR / NABL Certified Standards</span>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('soil-analysis')"
+              title="Listen to soil analysis report / मिट्टी जांच रिपोर्ट सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;">
+            Comprehensive physical soil characterization, macro & micronutrient profiling, documented Soil Quality Index
+            (SQI) scoring, and 12-factor AI crop suitability for 8 independent agricultural zones.
+          </div>
+        </div>
+
+        <!-- Top-Level Summary: All 8 Zones Soil Health Condition at a Glance -->
+        <div class="soil-card-wrapper">
+          <div class="soil-section-topline">
+            <div>
+              <h3 class="soil-card-heading">📊 8-Zone Soil Health & Fertility Condition (Executive Summary)</h3>
+              <div class="soil-card-subheading">All 8 autonomous plots monitored individually with verified laboratory
+                records and live ESP32 sensors</div>
+            </div>
+            <button class="btn-soil-action btn-add-test" onclick="SoilAnalysis.openAddTestModal()">
+              ➕ Add Laboratory Soil Test
+            </button>
+          </div>
+
+          <!-- 8-Zone Responsive Summary Grid -->
+          <div id="soil-8zone-summary-grid" class="soil-8zone-summary-grid">
+            <!-- Dynamically populated by SoilAnalysis.render8ZoneSummary() -->
+          </div>
+        </div>
+
+        <!-- Dedicated Zone Profile View Container -->
+        <div id="zone-soil-profile-view" class="zone-soil-profile-card">
+          <!-- Zone Switcher Ribbon (Zone 01 to Zone 08) -->
+          <div class="soil-zone-ribbon">
+            <span class="ribbon-label">Select Zone:</span>
+            <div class="soil-zone-pills-wrap">
+              <button class="soil-zone-pill active" data-zone="zone-1">Zone 01 • Peppers</button>
+              <button class="soil-zone-pill" data-zone="zone-2">Zone 02 • Tomato</button>
+              <button class="soil-zone-pill" data-zone="zone-3">Zone 03 • Spinach</button>
+              <button class="soil-zone-pill" data-zone="zone-4">Zone 04 • Sweet Corn</button>
+              <button class="soil-zone-pill" data-zone="zone-5">Zone 05 • Cucumber</button>
+              <button class="soil-zone-pill" data-zone="zone-6">Zone 06 • Beans</button>
+              <button class="soil-zone-pill" data-zone="zone-7">Zone 07 • Carrots</button>
+              <button class="soil-zone-pill" data-zone="zone-8">Zone 08 • Herbs</button>
+            </div>
+            <a href="#farm-zones" class="btn-back-farm-map" title="Back to 8-Zone Farm Map">
+              🗺️ Farm Map
+            </a>
+          </div>
+
+          <!-- Zone Executive Profile Header -->
+          <div class="zone-profile-hero">
+            <div class="hero-left-meta">
+              <div class="hero-zone-badge">
+                <span class="pin-pulse"></span>
+                <span id="sz-header-title">Zone 01 • Bell Pepper Plot</span>
+              </div>
+              <h3 id="sz-header-name" class="hero-plot-name">Zone 01 • Bell Pepper Plot</h3>
+              <div class="hero-lab-info">
+                <span>🏷️ Sample ID: <strong id="sz-sample-id">KY-SOIL-Z01-2026-OCT</strong></span>
+                <span>📅 Tested: <strong id="sz-test-date">2026-10-22</strong></span>
+                <span>🔬 Lab: <span id="sz-lab-name">ICAR Central Soil Laboratory</span></span>
+              </div>
+            </div>
+
+            <div class="hero-right-source">
+              <div id="sz-source-badge" class="sz-source-pill source-lab">
+                🔬 Verified Laboratory Certificate (NABL Accredited)
+              </div>
+              <div class="hero-action-buttons">
+                <button class="btn-quick-hero" onclick="SoilAnalysis.openEditTestModal(SoilAnalysis.activeZoneId)">
+                  ✏️ Edit Test
+                </button>
+                <button class="btn-quick-hero" onclick="SoilAnalysis.openTestHistoryModal(SoilAnalysis.activeZoneId)">
+                  📜 History
+                </button>
+                <button class="btn-quick-hero btn-hero-pdf"
+                  onclick="SoilAnalysis.downloadReportPdf(SoilAnalysis.activeZoneId)">
+                  📥 Export PDF Report
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Soil Health Score Card & Circular Gauge -->
+          <div class="soil-health-hero-card">
+            <!-- Left: Animated SVG Circular Gauge -->
+            <div class="gauge-column">
+              <div class="gauge-svg-container">
+                <svg class="soil-gauge-svg" viewBox="0 0 140 140">
+                  <circle class="gauge-track" cx="70" cy="70" r="54"></circle>
+                  <circle id="sz-gauge-circle" class="gauge-indicator" cx="70" cy="70" r="54"></circle>
+                </svg>
+                <div class="gauge-inner-label">
+                  <div id="sz-score-val" class="gauge-score-number">88</div>
+                  <div class="gauge-score-max">/ 100</div>
+                  <div class="gauge-unit">SQI Score</div>
+                </div>
+              </div>
+              <div id="sz-score-grade" class="gauge-grade-badge">Grade A+ (Prime Fertility)</div>
+            </div>
+
+            <!-- Right: Assessment Summary & 7 Parameter Pills -->
+            <div class="gauge-details-column">
+              <div class="exec-assessment-header">
+                <span class="assessment-tag">Comprehensive Diagnostic Evaluation:</span>
+                <h4 id="sz-health-summary" class="assessment-title">High Fertility (Balanced NPK & Micronutrients)</h4>
+              </div>
+
+              <!-- 7 Key Status Pills -->
+              <div id="sz-exec-pills-row" class="exec-pills-grid">
+                <!-- Populated dynamically -->
+              </div>
+
+              <!-- Collapsible Scoring Methodology Accordion -->
+              <details class="methodology-accordion">
+                <summary>
+                  <span>📐 Documented Scoring Methodology (Weighted Soil Quality Index - ICAR SQI)</span>
+                  <span class="acc-chevron">▼</span>
+                </summary>
+                <div class="methodology-content">
+                  <p>The Soil Quality Index (SQI) is calculated using documented agronomic weightings:</p>
+                  <ul>
+                    <li><strong>Soil Reaction / pH Buffer (15%):</strong> Evaluates thermodynamic nutrient solubility
+                      (optimal: 6.2 - 7.5).</li>
+                    <li><strong>Soil Organic Carbon (20%):</strong> Biological vitality, CEC, and humus sponge (>0.75%
+                      benchmark).</li>
+                    <li><strong>Macronutrient Sufficiency (30%):</strong> Liebig's Law evaluation of available N, P, K,
+                      and Sulphur reserves.</li>
+                    <li><strong>Micronutrient Sufficiency (15%):</strong> Critical enzymatic limits for Zn (>0.6 ppm),
+                      Fe (>4.5 ppm), Cu, Mn, and B (>0.5 ppm).</li>
+                    <li><strong>Physical Rootzone Health (20%):</strong> Moisture buffer, compaction (<150 PSI
+                        penetrometer resistance), and drainage.</li>
+                  </ul>
+                  <div class="calc-note">
+                    Score = (0.15 × pH) + (0.20 × OC) + (0.30 × Macro) + (0.15 × Micro) + (0.20 × Physical)
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Navigation Tabs -->
+          <div class="soil-tab-nav">
+            <button class="soil-tab-btn active" data-tab="properties">
+              <span>🔬</span> Basic Soil Properties
+            </button>
+            <button class="soil-tab-btn" data-tab="nutrients">
+              <span>🌾</span> Nutrient Fertility (Macro & Micro)
+            </button>
+            <button class="soil-tab-btn" data-tab="charts">
+              <span>📊</span> Fertility Visualizations & Charts
+            </button>
+            <button class="soil-tab-btn" data-tab="rules">
+              <span>🧠</span> Soil Condition Diagnosis
+            </button>
+            <button class="soil-tab-btn" data-tab="suitability">
+              <span>🤖</span> AI Crop Suitability
+            </button>
+            <button class="soil-tab-btn" data-tab="improvement">
+              <span>📋</span> Soil Improvement Plan
+            </button>
+            <button class="soil-tab-btn" data-tab="report">
+              <span>📄</span> Laboratory Test Report
+            </button>
+          </div>
+
+          <!-- TAB PANES -->
+
+          <!-- Pane 1: Basic Soil Properties -->
+          <div id="soil-pane-properties" class="soil-tab-pane active">
+            <div class="pane-header-row">
+              <h4>A. Basic Soil Physical & Chemical Properties</h4>
+              <span class="pane-info-tag">10 Core Structural & Environmental Parameters</span>
+            </div>
+            <div id="sz-properties-grid" class="soil-properties-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 2: Nutrient Fertility Breakdown -->
+          <div id="soil-pane-nutrients" class="soil-tab-pane">
+            <div class="pane-header-row">
+              <h4>B. Soil Fertility Analysis • Primary & Secondary Macronutrients</h4>
+              <span class="pane-info-tag">Measured vs Standard Range • Low/Medium/High Interpretation</span>
+            </div>
+            <div id="sz-macro-nutrients-grid" class="nutrients-grid">
+              <!-- Rendered dynamically -->
+            </div>
+
+            <div class="pane-header-row" style="margin-top:28px;">
+              <h4>C. Micronutrient Status & Enzymatic Catalysts</h4>
+              <span class="pane-info-tag">Zinc, Iron, Copper, Manganese, Boron</span>
+            </div>
+            <div id="sz-micro-nutrients-grid" class="nutrients-grid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 3: Fertility Visualizations & Graphs -->
+          <div id="soil-pane-charts" class="soil-tab-pane">
+            <div class="pane-header-row">
+              <h4>Soil Fertility Visualizations & Zero-Latency Graphs</h4>
+              <span class="pane-info-tag">Retina Sharp Visualizations with Reference Ranges</span>
+            </div>
+
+            <div class="soil-charts-grid-2x2">
+              <!-- Chart 1: NPK Comparison Bar Chart -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>📊 Available NPK vs Recommended Baseline</span>
+                  <span class="sc-unit">kg/ha</span>
+                </div>
+                <div class="soil-canvas-container">
+                  <canvas id="chart-soil-npk"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 2: Macronutrients Radar / Bar Status -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>🌾 Macronutrient Sufficiency (N, P, K, OC, S)</span>
+                  <span class="sc-unit">% Optimal</span>
+                </div>
+                <div class="soil-canvas-container">
+                  <canvas id="chart-soil-macro"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 3: Micronutrients Levels Chart -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>🔬 Micronutrient Levels (Zn, Fe, Cu, Mn, B)</span>
+                  <span class="sc-unit">ppm (mg/kg)</span>
+                </div>
+                <div class="soil-canvas-container">
+                  <canvas id="chart-soil-micro"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 4: Soil Reaction & Salinity Gauges -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>🧪 Soil pH Reaction & Salinity Meter</span>
+                  <span class="sc-unit">Dynamic Scales</span>
+                </div>
+                <div style="padding:10px 0;">
+                  <div style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">Soil
+                    Reaction (pH Spectrum):</div>
+                  <canvas id="chart-soil-ph-scale" style="height:65px; width:100%;"></canvas>
+
+                  <div
+                    style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); margin-top:14px; margin-bottom:4px;">
+                    Electrical Conductivity / Salinity (EC):</div>
+                  <canvas id="chart-soil-ec-scale" style="height:65px; width:100%;"></canvas>
+
+                  <div
+                    style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); margin-top:14px; margin-bottom:4px;">
+                    Organic Carbon % (Humus):</div>
+                  <canvas id="chart-soil-oc-gauge" style="height:65px; width:100%;"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 5: Soil Moisture 24h History -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>💧 Soil Moisture 24-Hour Telemetry Curve</span>
+                  <span class="sc-unit">% Moisture (ESP32)</span>
+                </div>
+                <div class="soil-canvas-container">
+                  <canvas id="chart-soil-moist-hist"></canvas>
+                </div>
+              </div>
+
+              <!-- Chart 6: Soil Temperature 24h History -->
+              <div class="soil-chart-box">
+                <div class="soil-chart-title">
+                  <span>🌡️ Soil Rootzone Temperature Curve</span>
+                  <span class="sc-unit">°C (ESP32)</span>
+                </div>
+                <div class="soil-canvas-container">
+                  <canvas id="chart-soil-temp-hist"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 4: Soil Condition Analysis & Agronomic Rules -->
+          <div id="soil-pane-rules" class="soil-tab-pane">
+            <div class="pane-header-row">
+              <h4>Intelligent Agronomic Condition Diagnosis</h4>
+              <span class="pane-info-tag">Automated Rules Engine based on ICAR Thresholds</span>
+            </div>
+            <div id="sz-condition-rules-box" class="condition-rules-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 5: AI Multi-Factor Crop Suitability -->
+          <div id="soil-pane-suitability" class="soil-tab-pane">
+            <div id="sz-suitability-content">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 6: Soil Improvement Plan -->
+          <div id="soil-pane-improvement" class="soil-tab-pane">
+            <div class="pane-header-row">
+              <h4>Zone-Specific 5-Pillar Soil Improvement Action Plan</h4>
+              <span class="pane-info-tag">Scientific Rationale behind every Recommendation</span>
+            </div>
+            <div id="sz-improvement-plan-container" class="improvement-plan-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Pane 7: Laboratory Test Report & History -->
+          <div id="soil-pane-report" class="soil-tab-pane">
+            <div id="sz-report-dossier-box">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 3: CROP & SOIL INTELLIGENCE
+           ======================================================== -->
+      <section id="crop-intelligence" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secCropIntelTitle">🌱 Crop & Soil Intelligence</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('crop-intelligence')"
+              title="Listen to crop advice / फसल सलाह सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secCropIntelSubtitle">AI-driven multi-cropping
+            recommendations, growth phenology, and continuous soil chemistry monitoring</div>
+        </div>
+
+        <div id="crop-intel-grid" class="crop-intel-grid">
+          <!-- Populated dynamically with gauges & progress bars -->
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 4: SMART IRRIGATION CONTROL PANEL
+           ======================================================== -->
+      <section id="smart-irrigation" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secIrrigationTitle">💧 Closed-Loop Smart Irrigation</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('smart-irrigation')"
+              title="Listen to irrigation telemetry / सिंचाई रिपोर्ट सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secIrrigationSubtitle">Automated soil moisture
+            threshold actuation with solar pump and valve telemetry</div>
+        </div>
+
+        <div class="irrigation-control-card">
+          <!-- AI Reasoning Banner -->
+          <div class="ai-reason-banner">
+            <span style="font-size:20px;">💡</span>
+            <div id="irrig-explanation-text">“Pump ON because Zone 04 soil moisture is below the required level.”</div>
+          </div>
+
+          <div class="irrig-status-split">
+            <div>
+              <div class="irrig-telemetry-grid">
+                <div class="t-metric-cell">
+                  <div class="t-label">Pump Status</div>
+                  <div id="irrig-pump-state" class="t-value text-primary-water">ON</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Control Mode</div>
+                  <div id="irrig-mode-state" class="t-value">AUTO MODE</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Active Zone</div>
+                  <div id="irrig-current-zone" class="t-value" style="color:var(--danger);">Zone 04 (Sweet Corn)</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Active Zone Moisture</div>
+                  <div id="irrig-soil-moisture" class="t-value text-danger">22%</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Target Moisture</div>
+                  <div id="irrig-target-moisture" class="t-value text-success">42%</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Water Delivered Now</div>
+                  <div id="irrig-water-supplied" class="t-value">180 L / 250 L</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Irrigation Duration</div>
+                  <div id="irrig-duration" class="t-value">28 min (12m left)</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Today's Consumption</div>
+                  <div id="irrig-today-cons" class="t-value">320 L</div>
+                </div>
+                <div class="t-metric-cell">
+                  <div class="t-label">Next Queued Zone</div>
+                  <div id="irrig-next-zone" class="t-value text-warning">Zone 03 (Spinach)</div>
+                </div>
+              </div>
+
+              <!-- Interactive Buttons -->
+              <div class="irrig-buttons-row">
+                <button id="btn-irrig-auto" class="btn-irrig btn-mode btn-active-mode">🤖 AUTO MODE</button>
+                <button id="btn-irrig-manual" class="btn-irrig btn-mode">⚙️ MANUAL MODE</button>
+                <button id="btn-irrig-start" class="btn-irrig btn-start">▶ START PUMP</button>
+                <button id="btn-irrig-stop" class="btn-irrig btn-stop">⏹ STOP PUMP</button>
+              </div>
+            </div>
+
+            <!-- Water Tank Level & Flow Indicator -->
+            <div class="tank-reservoir-box">
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-weight:700;">
+                  <span>Rainwater Harvesting Tank</span>
+                  <span id="irrig-tank-level" style="color:var(--water);">68% (13,600 L)</span>
+                </div>
+                <div class="tank-progress-track">
+                  <div id="water-tank-progress" class="tank-progress-fill" style="width:68%;"></div>
+                </div>
+                <div style="font-size:0.72rem; color:var(--text-muted); display:flex; justify-content:space-between;">
+                  <span>Capacity: 20,000 L</span>
+                  <span>14 Days Reserve</span>
+                </div>
+              </div>
+
+              <div
+                style="background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; margin-top:16px;">
+                <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Flow
+                  Rate Telemetry</div>
+                <div
+                  style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--water); margin-top:2px;">
+                  14.5 Liters / Minute
+                </div>
+                <div id="pump-flow-animation"
+                  style="font-size:0.72rem; color:var(--primary); font-weight:600; margin-top:4px;">
+                  ✓ Solenoid 04 Pulse Nominal
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 5: PLANT HEALTH MONITORING & AI SCREENING
+           ======================================================== -->
+      <section id="plant-health" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secPlantHealthTitle">🩺 Plant Health & AI Screening</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('plant-health')"
+              title="Listen to health report / फसल स्वास्थ्य सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secPlantHealthSubtitle">Multispectral foliar
+            diagnostics, vegetative vigor analysis, and early lesion detection</div>
+        </div>
+
+        <div class="plant-health-layout">
+          <!-- Health Metrics -->
+          <div class="health-metrics-card">
+            <div class="health-score-banner">
+              <div>
+                <div style="font-size:0.72rem; text-transform:uppercase; font-weight:700; color:var(--primary-dark);">
+                  Overall Farm Health</div>
+                <div id="ph-overall-val"
+                  style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; color:var(--primary-deep); line-height:1;">
+                  87%</div>
+              </div>
+              <div style="text-align:right;">
+                <span class="badge-healthy"
+                  style="padding:4px 10px; border-radius:12px; font-weight:700; font-size:0.78rem;">Optimal Vigor</span>
+                <div id="ph-growth-status" style="font-size:0.74rem; color:var(--text-secondary); margin-top:4px;">
+                  Vegetative & Fruiting</div>
+              </div>
+            </div>
+
+            <div class="health-stat-pill-row">
+              <div class="t-metric-cell">
+                <div class="t-label">Disease Risk</div>
+                <div id="ph-disease-risk" class="t-value" style="color:var(--sun);">12% (Low)</div>
+              </div>
+              <div class="t-metric-cell">
+                <div class="t-label">Pest Pressure Risk</div>
+                <div id="ph-pest-risk" class="t-value text-success">8% (Negligible)</div>
+              </div>
+              <div class="t-metric-cell">
+                <div class="t-label">Water Stress</div>
+                <div id="ph-water-stress" class="t-value text-warning">Low (Zone 04 Recov.)</div>
+              </div>
+              <div class="t-metric-cell">
+                <div class="t-label">Nutrient Stress</div>
+                <div id="ph-nutrient-stress" class="t-value text-warning">Moderate (Zone 04 N)</div>
+              </div>
+            </div>
+
+            <div
+              style="background:var(--bg-card-subtle); border:1px solid var(--border-color); border-radius:var(--radius-md); padding:12px; margin-bottom:12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.74rem; font-weight:700; color:var(--primary-deep);">AI OBSERVATION &
+                  SCREENING:</span>
+                <span style="font-size:0.7rem; font-weight:700; color:var(--primary);">Confidence: <span
+                    id="ph-ai-confidence">82%</span></span>
+              </div>
+              <p id="ph-ai-observation" style="font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+                Leaf reflectance scans indicate mild chlorosis in Zone 04 maize due to moisture deficit. Zero fungal
+                sporulation detected in strawberry Zone 08.
+              </p>
+            </div>
+
+            <div
+              style="background:#f0fdf4; border:1px solid var(--primary-border); border-radius:var(--radius-md); padding:12px;">
+              <span style="font-size:0.74rem; font-weight:700; color:var(--primary-dark);">RECOMMENDED ACTION:</span>
+              <p id="ph-recommended-action" style="font-size:0.8rem; color:var(--primary-deep); margin-top:2px;">
+                Complete Zone 04 deep soak, apply 1% chelated foliar spray after rehydration, continue organic neem
+                deterrent on Zone 06.
+              </p>
+            </div>
+
+            <div class="ai-disclaimer-box">
+              ⚠️ <strong>Notice:</strong> <span id="ph-disclaimer">AI screening / decision support — not a guaranteed
+                laboratory diagnosis.</span>
+            </div>
+          </div>
+
+          <!-- Camera Feed & Quick Status -->
+          <div class="health-camera-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-weight:700; font-size:0.92rem; color:var(--primary-deep);">Autonomous Field Scouting
+                Sensor</span>
+              <span class="badge-healthy" style="padding:3px 8px; font-size:0.7rem;">Active Multispectral</span>
+            </div>
+
+            <div class="camera-preview-box">
+              <img id="leaf-camera-img" src="assets/pest_armyworm_maize.jpg" alt="Crop Leaf Visual Diagnostics">
+              <div
+                style="position:absolute; top:20%; left:30%; width:45%; height:50%; border:2px dashed #ef4444; border-radius:6px; box-shadow:0 0 12px rgba(239,68,68,0.5); background:rgba(239,68,68,0.1);">
+                <span
+                  style="position:absolute; bottom:100%; left:0; background:#ef4444; color:#fff; font-size:0.62rem; font-weight:700; padding:2px 8px; border-radius:3px;">
+                  Pest Attack Alert • 96.4%
+                </span>
+              </div>
+            </div>
+
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; font-size:0.74rem; color:var(--text-secondary); margin-top:4px;">
+              <span>Target: Zone 04 Sweet Corn (Noctuid Caterpillar)</span>
+              <button class="btn-irrig btn-mode" style="padding:4px 10px; font-size:0.74rem;"
+                onclick="document.getElementById('pest-eradication-hub').scrollIntoView({behavior:'smooth'})">
+                🔬 Open Organic Lab ↓
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================
+             5B. AI PEST ATTACK IDENTIFICATION & ORGANIC ERADICATION STUDIO
+             ======================================================== -->
+        <div class="pest-studio-container" id="pest-eradication-hub">
+          <div class="pest-studio-header">
+            <div>
+              <div class="pest-studio-title-wrap">
+                <span style="font-size: 1.5rem;">🔬</span>
+                <h3 class="pest-studio-title" data-i18n="pestStudioTitle">AI Pest & Disease Attack Diagnosis & Organic
+                  Eradication Center</h3>
+              </div>
+              <div class="pest-studio-subtitle" data-i18n="pestStudioSubtitle">
+                Instant identification of pest types, foliar pathogens, certified fast organic bio-remedies, and
+                estimated recovery timelines.
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:8px;">
+              <button class="btn-read-aloud" onclick="App.speakPestDiagnosis()"
+                title="Listen to diagnosis & organic remedy / कीट निदान और जैविक इलाज सुनें">
+                🔊 <span data-i18n="listenBtn">सुनें</span>
+              </button>
+              <button id="btn-simulate-farm-attack" class="btn-irrig btn-stop"
+                style="padding:6px 12px; font-size:0.78rem;" onclick="App.simulateRandomAttack()"
+                title="Simulate another pest attack on farm">
+                ⚡ Simulate Attack
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Pest Attack Case Selector Bar -->
+          <div class="pest-selector-bar" id="pest-cases-toolbar">
+            <button class="pest-sample-btn active" data-pest-id="armyworm_corn"
+              onclick="App.selectPestCase('armyworm_corn', this)">
+              <span>🐛</span> <span>Zone 04: Fall Armyworm (Corn)</span>
+            </button>
+            <button class="pest-sample-btn" data-pest-id="spider_mites_pepper"
+              onclick="App.selectPestCase('spider_mites_pepper', this)">
+              <span>🕷️</span> <span>Zone 01: Red Spider Mites (Peppers)</span>
+            </button>
+            <button class="pest-sample-btn" data-pest-id="aphids_whitefly_chilli"
+              onclick="App.selectPestCase('aphids_whitefly_chilli', this)">
+              <span>🪰</span> <span>Zone 02: Whiteflies & Curl (Chilli)</span>
+            </button>
+            <button class="pest-sample-btn" data-pest-id="early_blight_tomato"
+              onclick="App.selectPestCase('early_blight_tomato', this)">
+              <span>🍄</span> <span>Zone 05: Early Blight (Tomatoes)</span>
+            </button>
+            <button class="pest-sample-btn" data-pest-id="black_aphids_eggplant"
+              onclick="App.selectPestCase('black_aphids_eggplant', this)">
+              <span>🪲</span> <span>Zone 07: Black Aphids (Eggplant)</span>
+            </button>
+            <button class="pest-sample-btn btn-custom-upload"
+              onclick="document.getElementById('pest-leaf-file-input').click()">
+              <span>📸</span> <span>Upload / Camera Scan</span>
+            </button>
+            <input type="file" id="pest-leaf-file-input" accept="image/*" style="display:none;"
+              onchange="App.handleCustomLeafUpload(event)">
+          </div>
+
+          <!-- Main Diagnostic & Eradication Grid -->
+          <div class="pest-main-grid">
+
+            <!-- Left Viewport: Computer Vision Viewfinder -->
+            <div class="pest-viewfinder-card">
+              <div class="pest-viewfinder-viewport">
+                <img id="pest-scan-image" src="assets/pest_armyworm_maize.jpg" alt="Pest Attack Diagnostics">
+
+                <!-- Laser Scanning Beam -->
+                <div id="pest-scan-laser" class="pest-scanner-laser"></div>
+
+                <!-- AI Bounding Box -->
+                <div id="pest-scan-bbox" class="pest-bbox-overlay">
+                  <span id="pest-bbox-label" class="pest-bbox-tag">Noctuid Larva • 96.4% Match</span>
+                </div>
+
+                <!-- HUD Top -->
+                <div class="pest-hud-top">
+                  <div id="pest-hud-cam-id" class="pest-hud-pill">
+                    <span>📷</span> <span>CAM-02 MACRO CV</span>
+                  </div>
+                  <div id="pest-scan-status-pill" class="pest-hud-pill status-detected">
+                    <span class="pulse-dot active"></span> <span id="pest-status-text">Attack Identified</span>
+                  </div>
+                </div>
+
+                <!-- HUD Bottom -->
+                <div class="pest-hud-bottom">
+                  <div class="pest-hud-pill">
+                    <span>📐</span> <span id="pest-hud-resolution">1920×1440 • Multispectral</span>
+                  </div>
+                  <div class="pest-hud-pill" style="color:#f59e0b;">
+                    <span>⚠️</span> <span id="pest-hud-severity-tag">Damage: 38% Foliar</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Viewport Controls -->
+              <div class="pest-view-controls">
+                <button id="btn-trigger-pest-scan" class="btn-pest-scan" onclick="App.runPestDiagnosisScan()">
+                  <span>⚡</span> <span data-i18n="btnScanAttack">Re-Scan & Diagnose Attack</span>
+                </button>
+                <button class="btn-pest-upload" onclick="document.getElementById('pest-leaf-file-input').click()"
+                  title="Upload leaf from phone or computer">
+                  <span>📸</span> <span data-i18n="btnUploadPhoto">Upload Photo</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Dossier: Identification, Organic Solution, Eradication Timeline -->
+            <div class="pest-dossier-card">
+
+              <!-- 1. IDENTIFICATION BANNER -->
+              <div class="pest-id-banner">
+                <div class="pest-id-topline">
+                  <div>
+                    <h4 id="pest-name" class="pest-common-name">Fall Armyworm (Spodoptera frugiperda)</h4>
+                    <div id="pest-hindi-name" class="pest-hindi-name">फॉल आर्मीवर्म (सैनिक सुंडी)</div>
+                  </div>
+                  <span id="pest-severity-pill" class="pest-pill pest-pill-severity">🔴 High (38% Damage)</span>
+                </div>
+
+                <div class="pest-pills-row">
+                  <span id="pest-type-badge" class="pest-pill pest-pill-type">🐛 Chewing Caterpillar
+                    (Lepidoptera)</span>
+                  <span id="pest-zone-badge" class="pest-pill pest-pill-zone">🗺️ Zone 04 (Sweet Corn)</span>
+                  <span id="pest-conf-badge" class="pest-pill pest-pill-conf">🎯 96.4% AI Match</span>
+                </div>
+
+                <!-- Spec Grid -->
+                <div class="pest-spec-grid" style="margin-top:12px;">
+                  <div>
+                    <div class="pest-spec-label">Targeted Plant Organs:</div>
+                    <div id="pest-organs" class="pest-spec-val">Leaf whorls, tassel base, tender ear shoots</div>
+                  </div>
+                  <div>
+                    <div class="pest-spec-label">Pest Classification:</div>
+                    <div id="pest-classification" class="pest-spec-val">Folivorous Chewing Insect</div>
+                  </div>
+                  <div>
+                    <div class="pest-spec-label">Observed Attack Symptoms:</div>
+                    <div id="pest-symptoms" class="pest-spec-val">Saw-toothed ragged leaf edges with extensive chewing
+                      damage</div>
+                  </div>
+                  <div>
+                    <div class="pest-spec-label">Crop Yield Loss Risk:</div>
+                    <div id="pest-yield-risk" class="pest-spec-val" style="color:var(--danger);">Up to 35-45% harvest
+                      reduction if untreated</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. FAST 100% ORGANIC SOLUTION -->
+              <div class="organic-solution-card">
+                <div class="organic-solution-header">
+                  <div class="organic-title-badge">
+                    <span style="font-size:1.2rem;">🌿</span>
+                    <span class="organic-badge-pill" data-i18n="badgeOrganicSolution">FAST ORGANIC SOLUTION</span>
+                  </div>
+                  <span id="organic-cert" class="organic-cert-pill">🌱 100% Certified Organic • 0-Day PHI</span>
+                </div>
+
+                <div id="organic-title" class="organic-remedy-name">
+                  Cold-Pressed NSKE 5% + Bacillus thuringiensis (Bt) Bio-Spray
+                </div>
+                <div id="organic-summary" class="organic-remedy-summary">
+                  Targeted bio-insecticidal spray combining Neem Azadirachtin with microbial Bt endotoxin for rapid gut
+                  paralysis.
+                </div>
+
+                <!-- Step-by-Step Recipe Matrix -->
+                <div class="recipe-matrix-box">
+                  <div class="recipe-matrix-title">
+                    <span>🧪</span> <span data-i18n="recipeTitle">Farmer's Fast Formulation & Dosage Matrix:</span>
+                  </div>
+                  <div id="pest-recipe-steps" class="recipe-steps-list">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <!-- Cultural Bio-defense & Mode of action -->
+                <div class="organic-biocontrol-tip">
+                  <strong>💡 Mode of Fast Action:</strong> <span id="organic-mode-of-action">Bt crystal endotoxin
+                    paralyzes chewing apparatus within 6 hours. Neem azadirachtin prevents molting.</span><br>
+                  <strong style="margin-top:4px; display:inline-block;">🦅 Cultural & Natural Predators:</strong> <span
+                    id="organic-cultural">Install 10 T-shaped bird perches per acre for Drongos + 5 Trichogramma wasp
+                    cards.</span>
+                </div>
+              </div>
+
+              <!-- 3. ESTIMATED ERADICATION TIME & STAGE TRACKER -->
+              <div class="eradication-timeline-card">
+                <div class="eradication-header-banner">
+                  <div class="eradication-time-badge">
+                    <span>⏱️</span>
+                    <div>
+                      <span
+                        style="font-size:0.7rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; display:block;">Estimated
+                        Eradication Time:</span>
+                      <strong id="eradication-time-text" style="color:#0284c7;">3 to 4 Days</strong>
+                    </div>
+                  </div>
+                  <div id="quick-knockdown-badge" class="quick-knockdown-tag">
+                    ⚡ 18 Hours (Feeding Ceases Completely)
+                  </div>
+                </div>
+
+                <!-- 3 Stage Progression -->
+                <div id="eradication-stages-grid" class="stages-tracker-grid">
+                  <!-- Populated dynamically with 3 stages and progress bars -->
+                </div>
+              </div>
+
+              <!-- Action Toolbar -->
+              <div class="pest-actions-bar">
+                <button id="btn-apply-organic" class="btn-apply-protocol" onclick="App.applyOrganicRemedy()">
+                  <span>🌿</span> <span data-i18n="btnApplyOrganic">Apply Organic Protocol Now</span>
+                </button>
+                <button id="btn-listen-pest" class="btn-pest-voice" onclick="App.speakPestDiagnosis()"
+                  title="Listen to audio advice / आवाज़ में सुनें">
+                  <span>🔊</span> <span data-i18n="listenBtn">सुनें</span>
+                </button>
+                <button class="btn-pest-voice" onclick="App.printRecipeCard()" title="Print or save recipe card">
+                  <span>📋</span> <span data-i18n="recipeCardBtn">Recipe Card</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 6: FARM SECURITY (NIGHT & WILDLIFE DETERRENCE)
+           ======================================================== -->
+      <section id="farm-security" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secSecurityTitle">🛡️ Night Security & Wildlife Deterrence</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('farm-security')"
+              title="Listen to night security status / रात की सुरक्षा सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secSecuritySubtitle">24/7 AI thermal surveillance
+            protecting 1-acre perimeter from wild boar, rodents, and unauthorized entry</div>
+        </div>
+
+        <div class="security-layout">
+          <!-- Thermal Camera View -->
+          <div class="security-camera-card">
+            <div class="cam-button-bar">
+              <button class="cam-select-btn" data-cam="CAM-01">CAM-01 (North)</button>
+              <button class="cam-select-btn" data-cam="CAM-02">CAM-02 (East)</button>
+              <button class="cam-select-btn active" data-cam="CAM-03">CAM-03 (South Fence)</button>
+              <button class="cam-select-btn" data-cam="CAM-04">CAM-04 (Gate)</button>
+            </div>
+
+            <div class="thermal-feed-wrapper">
+              <img id="security-feed-image" src="assets/thermal_security_cam.jpg"
+                alt="Night Vision Thermal Security Camera">
+              <div class="camera-overlay-hud">
+                <span id="current-cam-label">CAM-03 • South Perimeter (Zone 06)</span>
+                <span>IR DUSK-TO-DAWN ACTIVE</span>
+              </div>
+            </div>
+
+            <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted);">Deterrence Actuator:</span>
+                <div id="deterrence-live-indicator"
+                  style="font-size:0.8rem; font-weight:700; color:var(--primary-dark);">
+                  ✓ Ultrasound 24kHz + Strobe Pulse Armed
+                </div>
+              </div>
+              <button id="trigger-deterrence-btn" class="btn-irrig btn-stop"
+                style="font-size:0.8rem; padding:8px 14px;">
+                ⚡ Trigger Manual Deterrence
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Detection Classification -->
+          <div class="security-detection-card">
+            <span style="font-weight:700; font-size:0.92rem; color:var(--primary-deep); margin-bottom:10px;">
+              AI Wildlife & Intrusion Screening
+            </span>
+
+            <div id="security-ai-counts-grid" class="security-ai-counts-grid">
+              <!-- Populated dynamically -->
+            </div>
+
+            <!-- Incident Log Detail -->
+            <div class="incident-log-box">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong id="incident-title" style="color:var(--danger); font-size:0.9rem;">Possible Wild Boar
+                  Detected</strong>
+                <span id="incident-confidence" class="badge-critical" style="font-size:0.7rem;">91% AI Match</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:8px 0; font-size:0.74rem;">
+                <div><strong>Location:</strong> <span id="incident-zone">Zone 06 (South Perimeter)</span></div>
+                <div><strong>Camera:</strong> <span id="incident-cam">CAM-03</span></div>
+                <div><strong>Logged Time:</strong> <span id="incident-time">02:17 AM</span></div>
+                <div><strong>Deterrence:</strong> <span id="incident-deterrence">Activated</span></div>
+              </div>
+
+              <div style="font-size:0.74rem; color:var(--text-secondary);">
+                <strong>Thermal Signature:</strong> <span id="incident-thermal">38.5°C body heat vs 18°C soil</span><br>
+                <strong>Alert Status:</strong> <span id="incident-alert-status">SMS & In-App Notification
+                  Delivered</span>
+              </div>
+            </div>
+
+            <div class="ai-disclaimer-box">
+              ℹ️ Classified as <strong>“possible”</strong> wildlife presence with confidence metric to prevent false
+              alarms.
+            </div>
+          </div>
+        </div>
+
+        <!-- Autonomous Drone Patrol Station & Radar (Drone Zone) -->
+        <div class="drone-patrol-station-card">
+          <div class="drone-station-header">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="drone-hangar-icon">🛸</div>
+              <div>
+                <h3 class="drone-station-title">🚁 Autonomous Agro-Drone Interceptor Station (Drone Zone 0)</h3>
+                <div class="drone-station-sub">Automated perimeter defense: Camera AI detects animal/human → Alert sent
+                  to Drone Zone → Drone scrambles to coordinates & chases animal out of field</div>
+              </div>
+            </div>
+            <div id="drone-dock-status-badge" class="drone-dock-badge status-docked">
+              <span class="pulse-dot idle" id="drone-status-pulse"></span>
+              <span id="drone-dock-status-text">DRONE DOCKED • READY</span>
+            </div>
+          </div>
+
+          <!-- Drone Radar Flight Grid & Interactive Mission HUD -->
+          <div class="drone-radar-container">
+            <div class="drone-radar-header-bar">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="pulse-dot active" style="background:#22c55e;"></span>
+                <span>1-Acre Micro-Patrol Aerial Defense Radar</span>
+              </div>
+              <span id="drone-flight-coords"
+                style="font-family:var(--font-mono); color:var(--text-secondary); font-size:0.75rem;">GPS: 28.6139° N,
+                77.2090° E • Hangar Dock Central</span>
+            </div>
+
+            <!-- Visual 2D Radar Grid of 1-Acre Farm -->
+            <div class="drone-flight-map" id="drone-flight-map">
+              <!-- Radar sweep beam -->
+              <div class="radar-sweep-beam"></div>
+
+              <!-- Top Row Zones -->
+              <div class="radar-zone-node rz-1" data-zone="Zone 01"><span>Z01: Capsicum</span></div>
+              <div class="radar-zone-node rz-2" data-zone="Zone 02"><span>Z02: Tomato</span></div>
+              <div class="radar-zone-node rz-3" data-zone="Zone 03"><span>Z03: Spinach</span></div>
+              <div class="radar-zone-node rz-4" data-zone="Zone 04"><span>Z04: Sweet Corn</span></div>
+
+              <!-- Central Drone Hangar Base -->
+              <div class="radar-hangar-dock" id="radar-hangar-dock">
+                <div class="hangar-sonar-ring"></div>
+                <div class="hangar-icon-badge">🛸</div>
+                <span class="hangar-label">DRONE DOCK</span>
+              </div>
+
+              <!-- Dynamic Drone Sprite (flies between hangar & zones) -->
+              <div class="radar-drone-sprite" id="radar-drone-sprite">
+                <div class="drone-prop-blur"></div>
+                <div class="drone-body-icon">🚁</div>
+                <div class="drone-spotlight-beam" id="drone-spotlight-beam"></div>
+                <div class="drone-ultrasound-waves" id="drone-ultrasound-waves"></div>
+                <span class="drone-callsign">GARUDA-01</span>
+              </div>
+
+              <!-- Dynamic Target Intruder Marker (Appears where animal/human is detected) -->
+              <div class="radar-intruder-marker" id="radar-intruder-marker">
+                <div class="intruder-alarm-ring"></div>
+                <span class="intruder-emoji" id="radar-intruder-emoji">🐗</span>
+                <span class="intruder-tag" id="radar-intruder-tag">Wild Boar</span>
+              </div>
+
+              <!-- Bottom Row Zones -->
+              <div class="radar-zone-node rz-5" data-zone="Zone 05"><span>Z05: Carrots</span></div>
+              <div class="radar-zone-node rz-6" data-zone="Zone 06"><span>Z06: Brinjal (South Fence)</span></div>
+              <div class="radar-zone-node rz-7" data-zone="Zone 07"><span>Z07: Cabbage</span></div>
+              <div class="radar-zone-node rz-8" data-zone="Zone 08"><span>Z08: Onion (Main Gate)</span></div>
+            </div>
+
+            <!-- Drone Telemetry Live Dashboard -->
+            <div class="drone-telemetry-row">
+              <div class="drone-telemetry-cell">
+                <span class="d-label">Drone Call-Sign</span>
+                <span class="d-val">GARUDA-01 (Agro-Interceptor)</span>
+              </div>
+              <div class="drone-telemetry-cell">
+                <span class="d-label">Battery Level</span>
+                <span class="d-val text-success" id="drone-telemetry-batt">98% (Solar Fast-Charge)</span>
+              </div>
+              <div class="drone-telemetry-cell">
+                <span class="d-label">Flight Speed</span>
+                <span class="d-val" id="drone-telemetry-speed">0.0 km/h</span>
+              </div>
+              <div class="drone-telemetry-cell">
+                <span class="d-label">Cruising Altitude</span>
+                <span class="d-val" id="drone-telemetry-alt">0.0 m (AGL)</span>
+              </div>
+              <div class="drone-telemetry-cell">
+                <span class="d-label">Deterrence Actuators</span>
+                <span class="d-val text-primary-water" id="drone-telemetry-payload">120dB Sonic Repeller + 2400lm
+                  LED</span>
+              </div>
+            </div>
+
+            <!-- 5-Stage Live Mission Stepper -->
+            <div class="drone-mission-stepper">
+              <div class="mission-step active" id="m-step-1">
+                <div class="step-circle">1</div>
+                <div class="step-info">
+                  <strong>Camera AI Detection</strong>
+                  <span id="step-desc-1">Thermal lock on target</span>
+                </div>
+              </div>
+              <div class="mission-connector" id="m-conn-1"></div>
+              <div class="mission-step" id="m-step-2">
+                <div class="step-circle">2</div>
+                <div class="step-info">
+                  <strong>Alert Drone Zone</strong>
+                  <span id="step-desc-2">Telemetry dispatched</span>
+                </div>
+              </div>
+              <div class="mission-connector" id="m-conn-2"></div>
+              <div class="mission-step" id="m-step-3">
+                <div class="step-circle">3</div>
+                <div class="step-info">
+                  <strong>Drone Scramble & Fly</strong>
+                  <span id="step-desc-3">Autopilot vector to zone</span>
+                </div>
+              </div>
+              <div class="mission-connector" id="m-conn-3"></div>
+              <div class="mission-step" id="m-step-4">
+                <div class="step-circle">4</div>
+                <div class="step-info">
+                  <strong>Chase Animal Out</strong>
+                  <span id="step-desc-4">Sonic blast & spotlight</span>
+                </div>
+              </div>
+              <div class="mission-connector" id="m-conn-4"></div>
+              <div class="mission-step" id="m-step-5">
+                <div class="step-circle">5</div>
+                <div class="step-info">
+                  <strong>Perimeter Clear / RTH</strong>
+                  <span id="step-desc-5">Return to Dock Base</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real-Time Mission Live Log Terminal -->
+            <div class="drone-live-log-box" id="drone-live-log-box">
+              <div class="log-line text-muted">[00:00:00] Drone Dock Hangar online. Perimeter surveillance active across
+                4 thermal cameras.</div>
+            </div>
+
+            <!-- Drone Action Controls & Live Test Scenarios -->
+            <div class="drone-actions-toolbar">
+              <span class="actions-label">Simulate Intrusion & Auto-Drone Response:</span>
+              <div class="drone-btns-group">
+                <button class="btn-drone-action btn-boar"
+                  onclick="FarmSecurity.triggerAutoDefense('Wild Boar', 'Zone 06', 'CAM-03')">
+                  <span>🐗</span>
+                  <span>Wild Boar in Zone 06 → Scramble Drone</span>
+                </button>
+                <button class="btn-drone-action btn-human"
+                  onclick="FarmSecurity.triggerAutoDefense('Unauthorized Human', 'Zone 08', 'CAM-04')">
+                  <span>👤</span>
+                  <span>Human at Gate Z08 → Intercept</span>
+                </button>
+                <button class="btn-drone-action btn-rodent"
+                  onclick="FarmSecurity.triggerAutoDefense('Rodent Swarm', 'Zone 02', 'CAM-01')">
+                  <span>🐀</span>
+                  <span>Rodents in Zone 02 → Sonic Patrol</span>
+                </button>
+                <button class="btn-drone-action btn-abort" onclick="FarmSecurity.abortDroneMission()">
+                  <span>🛑</span>
+                  <span>Emergency Recall (RTH)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 7: WEATHER & ENVIRONMENT
+           ======================================================== -->
+      <section id="weather-environment" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secWeatherTitle">🌦️ Weather & Micro-Environment</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('weather-environment')"
+              title="Listen to weather forecast / मौसम की जानकारी सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secWeatherSubtitle">Hyper-local agro-weather
+            radar with intelligent rain-delay irrigation postponement</div>
+        </div>
+
+        <div class="weather-grid-card">
+          <div class="weather-metrics-flex">
+            <div class="t-metric-cell">
+              <div class="t-label">Air Temperature</div>
+              <div id="weather-temp" class="t-value">27.4°C</div>
+            </div>
+            <div class="t-metric-cell">
+              <div class="t-label">Relative Humidity</div>
+              <div id="weather-humidity" class="t-value">62%</div>
+            </div>
+            <div class="t-metric-cell">
+              <div class="t-label">Rainfall (24h)</div>
+              <div id="weather-rainfall" class="t-value">0.0 mm</div>
+            </div>
+            <div class="t-metric-cell">
+              <div class="t-label">Wind Velocity</div>
+              <div id="weather-wind" class="t-value">9.2 km/h NW</div>
+            </div>
+            <div class="t-metric-cell">
+              <div class="t-label">Solar Light (PAR)</div>
+              <div id="weather-light" class="t-value" style="font-size:0.88rem;">1,450 µmol/m²/s</div>
+            </div>
+            <div class="t-metric-cell">
+              <div class="t-label">Rain Probability</div>
+              <div id="weather-rain-prob" class="t-value text-primary-water">15%</div>
+            </div>
+          </div>
+
+          <div class="weather-smart-alert">
+            <span style="font-size:18px; margin-right:6px;">🌧️</span>
+            <strong>Intelligent Irrigation Decision:</strong>
+            <span id="weather-smart-message">“Rain expected — irrigation postponed.”</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 8: FARM ECONOMICS
+           ======================================================== -->
+      <section id="farm-economics" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secEconomicsTitle">💰 1-Acre Farm Economics</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('farm-economics')"
+              title="Listen to farm profit & costs / कमाई और मुनाफा सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secEconomicsSubtitle">Precision budgeting,
+            multi-crop yield projections, and estimated net farmer return</div>
+        </div>
+
+        <div class="economics-layout">
+          <!-- Cultivation Cost Breakdown -->
+          <div class="cultivation-cost-card">
+            <h3 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:700; color:var(--primary-deep);">
+              Itemized Cultivation Cost
+            </h3>
+            <div id="cultivation-cost-list" class="cost-list">
+              <!-- Populated dynamically -->
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; font-weight:800; font-size:1rem; padding-top:8px; border-top:2px solid var(--border-color);">
+              <span>Total Estimated Cost:</span>
+              <span id="eco-total-cost" style="color:var(--danger);">₹67,000</span>
+            </div>
+          </div>
+
+          <!-- Flow Chart: Cost -> Yield -> Revenue -> Net Return -->
+          <div class="economic-flow-card">
+            <h3 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:700; color:var(--primary-deep);">
+              Economic Progression Flow
+            </h3>
+
+            <div class="eco-flow-chain">
+              <div class="flow-step-box">
+                <div class="flow-label">1. Total Cost</div>
+                <div class="flow-val" style="color:var(--danger);">₹67,000</div>
+              </div>
+              <div class="flow-step-box">
+                <div class="flow-label">2. Est. Yield</div>
+                <div id="eco-total-yield" class="flow-val" style="color:var(--sun); font-size:0.95rem;">14.45 Tons</div>
+              </div>
+              <div class="flow-step-box">
+                <div class="flow-label">3. Revenue</div>
+                <div id="eco-total-revenue" class="flow-val" style="color:var(--water);">₹4 Lakh</div>
+              </div>
+              <div class="flow-step-box" style="background:#f0fdf4; border-color:var(--primary-border);">
+                <div class="flow-label" style="color:var(--primary-dark);">4. Net Return</div>
+                <div id="eco-net-return" class="flow-val" style="color:var(--primary-dark);">₹3.5 Lakh</div>
+              </div>
+            </div>
+
+            <div
+              style="background:var(--bg-card-subtle); border-radius:var(--radius-md); padding:14px; margin-top:auto;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:0.8rem; font-weight:700; color:var(--primary-deep);">Net Return on Investment
+                  (ROI):</span>
+                <span id="eco-roi"
+                  style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--primary);">+78%
+                  ROI</span>
+              </div>
+              <div class="ai-disclaimer-box" style="margin-top:8px;">
+                * All values are <strong>estimated</strong> based on prevailing mandi wholesale crop market prices and
+                optimal drip fertigation management.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 9: ALERT CENTER
+           ======================================================== -->
+      <section id="alert-center" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secAlertsTitle">🔔 Alert & Notification Center</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('alert-center')"
+              title="Listen to active alerts / चेतावनियां सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secAlertsSubtitle">Real-time agricultural
+            incident dispatcher with recommended interventions</div>
+        </div>
+
+        <div class="alerts-card">
+          <!-- Severity Filter Buttons -->
+          <div class="alert-filters-bar">
+            <button class="alert-filter-btn active" onclick="App.filterAlerts('all', this)">All Notifications</button>
+            <button class="alert-filter-btn" onclick="App.filterAlerts('critical', this)">🔴 Critical Alerts</button>
+            <button class="alert-filter-btn" onclick="App.filterAlerts('warning', this)">🟡 Warnings</button>
+            <button class="alert-filter-btn" onclick="App.filterAlerts('success', this)">🟢 Nominal Events</button>
+          </div>
+
+          <div id="alerts-feed-container" class="alerts-feed-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 10: ANALYTICS & TIMEFRAME CHARTS
+           ======================================================== -->
+      <section id="analytics" class="section-container">
+        <div class="section-header-row">
+          <div>
+            <h2 class="section-title" data-i18n="secAnalyticsTitle">📊 Historical Farm Analytics</h2>
+            <div class="section-subtitle" data-i18n="secAnalyticsSubtitle">Zero-latency canvas visualizations of soil,
+              irrigation, micro-climate, and yield trends</div>
+          </div>
+        </div>
+
+        <div class="analytics-wrapper-card">
+          <div class="analytics-top-bar">
+            <span style="font-size:0.86rem; font-weight:700; color:var(--primary-deep);">Telemetry Timeframe:</span>
+            <div class="timeframe-group">
+              <button class="timeframe-btn active" data-timeframe="today">Today</button>
+              <button class="timeframe-btn" data-timeframe="week">7 Days</button>
+              <button class="timeframe-btn" data-timeframe="month">30 Days</button>
+            </div>
+          </div>
+
+          <div class="charts-grid-2x2">
+            <!-- Chart 1: Soil Moisture -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>💧 Soil Moisture Trend</span>
+                <span style="color:var(--primary); font-size:0.75rem;">Avg %</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-moisture"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 2: Water Consumption -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>🚰 Water Consumption</span>
+                <span style="color:var(--water); font-size:0.75rem;">Liters</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-water"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 3: Ambient Temperature -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>🌡️ Temperature Profile</span>
+                <span style="color:var(--sun); font-size:0.75rem;">°C Ambient</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-temp"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 4: Humidity -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>🍃 Relative Humidity Curve</span>
+                <span style="color:#059669; font-size:0.75rem;">% RH</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-humidity"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 5: Zone-Wise Water Usage -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>🚿 Zone-Wise Water Usage</span>
+                <span style="color:var(--water); font-size:0.75rem;">Liters / Zone</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-zone-water"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 6: Zone-Wise Estimated Yield -->
+            <div class="chart-box">
+              <div class="chart-box-title">
+                <span>🌾 Projected Yield per Zone</span>
+                <span style="color:var(--primary); font-size:0.75rem;">Kilograms</span>
+              </div>
+              <div class="canvas-container">
+                <canvas id="chart-zone-yield"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION 11: POST-HARVEST PACKING, ZERO-MIDDLEMEN SALES & ZERO-WASTE UPCYCLING
+           ======================================================== -->
+      <section id="post-harvest-market" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title" data-i18n="secPostHarvestTitle">📦 Direct Sales & Zero-Waste Circular Studio</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('post-harvest-market')"
+              title="Listen to sales & waste upcycling report / सीधी बिक्री व कचरा प्रबंधन सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;" data-i18n="secPostHarvestSubtitle">
+            Farm-to-buyer direct packaging without middleman cuts • 100% crop residue upcycled into vermicompost,
+            biochar & gourmet mushrooms
+          </div>
+        </div>
+
+        <!-- Top Impact Metrics Row -->
+        <div class="ph-impact-row">
+          <div class="ph-impact-card card-highlight">
+            <div class="ph-impact-top">
+              <span class="ph-impact-label" data-i18n="cardDirectProfit">Direct Farm Profit Surge</span>
+              <span style="font-size:1.2rem;">💰</span>
+            </div>
+            <div id="ph-direct-extra-val" class="ph-impact-val" style="color:var(--primary-dark);">+₹5,57,500</div>
+            <div class="ph-impact-sub">+115% Net Margin vs Mandi Brokers</div>
+          </div>
+
+          <div class="ph-impact-card">
+            <div class="ph-impact-top">
+              <span class="ph-impact-label" data-i18n="cardMiddlemanCut">Middleman Commission</span>
+              <span style="font-size:1.2rem;">🚫</span>
+            </div>
+            <div class="ph-impact-val text-success">₹0</div>
+            <div class="ph-impact-sub">100% Value Retained at Farmgate</div>
+          </div>
+
+          <div class="ph-impact-card">
+            <div class="ph-impact-top">
+              <span class="ph-impact-label" data-i18n="cardBiomassDiverted">Harvest Biomass Residue</span>
+              <span style="font-size:1.2rem;">🌾</span>
+            </div>
+            <div id="ph-total-biomass-val" class="ph-impact-val" style="color:var(--sun);">2.5 Tons</div>
+            <div class="ph-impact-sub">Zero Stubble Burning • 100% Upcycled</div>
+          </div>
+
+          <div class="ph-impact-card card-highlight">
+            <div class="ph-impact-top">
+              <span class="ph-impact-label" data-i18n="cardWasteWealth">Wealth Created from Waste</span>
+              <span style="font-size:1.2rem;">♻️</span>
+            </div>
+            <div id="ph-waste-wealth-val" class="ph-impact-val" style="color:var(--primary-deep);">₹58,400</div>
+            <div class="ph-impact-sub">Compost, Biochar & Oyster Mushrooms</div>
+          </div>
+        </div>
+
+        <!-- Studio Tab Switcher -->
+        <div class="ph-tabs-bar">
+          <button id="ph-tab-btn-sales" class="ph-tab-btn active" onclick="App.switchPostHarvestTab('sales', this)">
+            <span>📦</span> <span data-i18n="tabDirectSales">Direct Packing & Zero-Middlemen Sales Hub</span>
+          </button>
+          <button id="ph-tab-btn-waste" class="ph-tab-btn" onclick="App.switchPostHarvestTab('waste', this)">
+            <span>♻️</span> <span data-i18n="tabZeroWaste">Zero-Waste Upcycling (Waste-to-Wealth Studio)</span>
+          </button>
+        </div>
+
+        <!-- TAB 1: DIRECT-TO-CONSUMER SALES & SMART PACKAGING -->
+        <div id="ph-panel-sales" class="ph-tab-panel active">
+
+          <!-- Hero Split: Packaging Preview & D2C Price Multiplier -->
+          <div class="ph-hero-split">
+
+            <div class="ph-image-box">
+              <img src="assets/direct_farm_packaging.jpg" alt="Direct-to-Consumer Eco Packaging with QR Traceability">
+              <div class="ph-image-footer">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <strong style="color:var(--primary-deep); font-size:0.92rem;">Eco-Friendly Farmgate
+                      Packaging</strong>
+                    <div style="font-size:0.75rem; color:var(--text-secondary);">100% Recyclable Kraft Box with QR
+                      Traceability Seal</div>
+                  </div>
+                  <span class="gain-badge">Grade A Prime</span>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:6px;">
+                  <button class="btn-irrig btn-start" style="flex:1; font-size:0.8rem; padding:8px 12px;"
+                    onclick="App.openQrModal('crop_corn')">
+                    🏷️ Preview Batch QR Traceability Seal
+                  </button>
+                  <button class="btn-irrig btn-mode" style="font-size:0.8rem; padding:8px 12px;"
+                    onclick="App.showToast('Packaging checklist printed for field crew')">
+                    📋 Checklist
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- D2C vs Middleman Price Multiplier Table -->
+            <div class="ph-table-card">
+              <div class="ph-card-title">
+                <span>⚖️</span>
+                <span data-i18n="priceMatrixTitle">Middleman vs Direct D2C Price & Margin Gain</span>
+              </div>
+              <div class="ph-card-desc" data-i18n="priceMatrixDesc">
+                Compare wholesale mandi broker rates against direct farm-to-consumer prices. Zero commission fees!
+              </div>
+
+              <div style="overflow-x:auto;">
+                <table class="d2c-price-table">
+                  <thead>
+                    <tr>
+                      <th>Crop & Plot</th>
+                      <th>Est. Yield</th>
+                      <th>Mandi Price (Middleman)</th>
+                      <th>Direct D2C Price</th>
+                      <th>Farmer Profit Gain</th>
+                    </tr>
+                  </thead>
+                  <tbody id="d2c-price-table-body">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div
+                style="margin-top:14px; padding:10px 14px; background:#f0fdf4; border:1px solid #86efac; border-radius:var(--radius-md); font-size:0.78rem; color:var(--primary-deep); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                <span>💡 <strong>Middleman Elimination Result:</strong> Selling all 14.45 tons directly yields
+                  <strong>₹10,42,500</strong> vs only ₹4,85,000 in mandi!</span>
+                <span class="gain-badge" style="font-size:0.82rem;">+₹5,57,500 Extra Cash</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 4-Step Smart Packaging Standards -->
+          <div style="margin-bottom:12px;">
+            <h3
+              style="font-family:var(--font-heading); font-size:1.1rem; font-weight:800; color:var(--primary-deep); margin-bottom:4px;">
+              🏷️ 4-Step Standardized Farmgate Packaging Protocol
+            </h3>
+            <div style="font-size:0.78rem; color:var(--text-secondary); margin-bottom:14px;">
+              Certified grading and packaging standards enabling smallholders to command top urban retail prices.
+            </div>
+
+            <div class="packaging-steps-grid">
+              <div class="pkg-step-card">
+                <div class="pkg-step-num">1</div>
+                <div class="pkg-step-title">In-Field Grading & Sorting</div>
+                <div class="pkg-step-desc">
+                  Grade A (85% Prime): Zero skin blemishes, uniform sizing. Grade B (15%): Diverted to direct sauce
+                  making or circular biomass upcycling.
+                </div>
+              </div>
+              <div class="pkg-step-card">
+                <div class="pkg-step-num">2</div>
+                <div class="pkg-step-title">100% Zero-Plastic Eco Packs</div>
+                <div class="pkg-step-desc">
+                  Packed in breathable corrugated kraft boxes, cornstarch pouches, and natural jute twine. Eliminates
+                  plastic waste and appeals to eco-conscious consumers.
+                </div>
+              </div>
+              <div class="pkg-step-card">
+                <div class="pkg-step-num">3</div>
+                <div class="pkg-step-title">Smart QR Traceability Label</div>
+                <div class="pkg-step-desc">
+                  Each carton receives a dynamic QR seal verifying harvest timestamp, 0.00 ppm chemical bio-pesticide
+                  purity, and exact farm plot number.
+                </div>
+              </div>
+              <div class="pkg-step-card">
+                <div class="pkg-step-num">4</div>
+                <div class="pkg-step-title">4-Hour Direct Dispatch</div>
+                <div class="pkg-step-desc">
+                  Dispatched via local direct logistics e-vans straight to residential housing societies and organic
+                  co-ops before afternoon heat.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Direct Pre-Orders & Dispatch Desk -->
+          <div class="orders-board-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <h3
+                  style="font-family:var(--font-heading); font-size:1.1rem; font-weight:800; color:var(--primary-deep);">
+                  📋 Active Direct Buyer Orders & Dispatch Desk
+                </h3>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">
+                  Verified community orders with escrow-secured pre-payments. Zero brokerage fees.
+                </div>
+              </div>
+              <button class="btn-irrig btn-mode" style="font-size:0.8rem; padding:6px 14px;"
+                onclick="App.simulateNewOrder()">
+                ➕ Simulate New Community Pre-Order
+              </button>
+            </div>
+
+            <div id="direct-orders-grid" class="orders-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: ZERO-WASTE CIRCULAR ECONOMY (WASTE-TO-WEALTH STUDIO) -->
+        <div id="ph-panel-waste" class="ph-tab-panel">
+
+          <!-- Hero Split: Upcycling Image & Biomass Inventory -->
+          <div class="ph-hero-split">
+
+            <div class="ph-image-box">
+              <img src="assets/farm_waste_upcycling.jpg"
+                alt="Zero-Waste Farm Residue Upcycled into Vermicompost and Biochar">
+              <div class="ph-image-footer">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div>
+                    <strong style="color:var(--primary-deep); font-size:0.92rem;">Zero Stubble Burning • 100% Circular
+                      Biomass</strong>
+                    <div style="font-size:0.75rem; color:var(--text-secondary);">Transforming stalks, foliage, and culls
+                      into high-value agricultural wealth</div>
+                  </div>
+                  <span class="gain-badge" style="background:#fef3c7; color:#b45309;">Zero-Waste Certified</span>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:8px; font-size:0.74rem;">
+                  <div style="background:#f8fafc; padding:6px 10px; border-radius:6px;"><strong>CO2e Prevented:</strong>
+                    3.8 Tons</div>
+                  <div style="background:#f8fafc; padding:6px 10px; border-radius:6px;"><strong>Soil Carbon
+                      Boost:</strong> +0.45%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Farm Biomass Residue Inventory -->
+            <div class="ph-table-card">
+              <div class="ph-card-title">
+                <span>🌾</span>
+                <span data-i18n="biomassInventoryTitle">Farm Biomass Residue Inventory</span>
+              </div>
+              <div class="ph-card-desc">
+                Current post-harvest crop residue available across the 8 zones for circular bio-conversion.
+              </div>
+
+              <div id="biomass-inventory-list" style="display:flex; flex-direction:column; gap:8px;">
+                <!-- Populated dynamically -->
+              </div>
+
+              <div
+                style="margin-top:14px; padding:10px 14px; background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-md); font-size:0.78rem; color:#1e40af; display:flex; justify-content:space-between; align-items:center;">
+                <span>Total Residue: <strong>2,500 kg (2.5 Tons)</strong></span>
+                <span>Potential Wealth: <strong style="color:#0284c7;">₹58,400</strong></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 5 Circular Upcycling Pathways Grid -->
+          <div style="margin-bottom:24px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <div>
+                <h3
+                  style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:var(--primary-deep);">
+                  ♻️ 5 High-Value Waste-to-Wealth Upcycling Pathways
+                </h3>
+                <div style="font-size:0.78rem; color:var(--text-secondary);">
+                  Proven bio-conversion methodologies turning agricultural waste into revenue and soil vitality.
+                </div>
+              </div>
+            </div>
+
+            <div id="upcycling-pathways-grid" class="circular-pathways-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+
+          <!-- Interactive Waste-to-Wealth Conversion Calculator -->
+          <div class="waste-converter-box">
+            <div class="calc-input-group">
+              <div
+                style="font-size:0.76rem; text-transform:uppercase; font-weight:800; color:#86efac; letter-spacing:0.5px;">
+                INTERACTIVE CONVERTER
+              </div>
+              <h3 style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800;">
+                Waste-to-Wealth Batch Calculator
+              </h3>
+              <p style="font-size:0.8rem; color:#d1fae5; line-height:1.4;">
+                Select your harvest crop residue type and weight to instantly compute the circular outputs, mushroom
+                potential, and monetary return.
+              </p>
+
+              <div>
+                <label
+                  style="font-size:0.74rem; font-weight:700; color:#a7f3d0; display:block; margin-bottom:4px;">Select
+                  Biomass Residue Type:</label>
+                <select id="calc-waste-type" class="calc-select" onchange="App.calculateWasteOutput()">
+                  <option value="corn_stover">Sweet Corn Stover & Husks (High Cellulose)</option>
+                  <option value="tomato_pepper">Tomato & Bell Pepper Pruned Foliage (Nitrogen-Rich)</option>
+                  <option value="chilli_stems">Chilli Stems & Woody Twigs (Lignin Biochar)</option>
+                  <option value="culled_fruits">Culled Produce & Non-Grade Fruit Scraps (Liquid Ferment)</option>
+                  <option value="field_weeds">Mixed Field Weeds & Root Trimmings</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  style="font-size:0.74rem; font-weight:700; color:#a7f3d0; display:block; margin-bottom:4px;">Residue
+                  Weight (Kilograms):</label>
+                <input type="number" id="calc-waste-weight" class="calc-input" value="500" min="50" max="5000" step="50"
+                  oninput="App.calculateWasteOutput()">
+              </div>
+            </div>
+
+            <div class="calc-results-display">
+              <div
+                style="font-size:0.78rem; font-weight:800; color:#a7f3d0; text-transform:uppercase; margin-bottom:4px;">
+                Estimated Circular Yield & Economic Output:
+              </div>
+
+              <div class="calc-result-row">
+                <span>🪱 Vermicompost Humus Output:</span>
+                <strong id="calc-res-compost" style="color:#86efac;">300 kg</strong>
+              </div>
+              <div class="calc-result-row">
+                <span>🔥 High-CEC Biochar Carbon:</span>
+                <strong id="calc-res-biochar" style="color:#fde047;">90 kg</strong>
+              </div>
+              <div class="calc-result-row">
+                <span>🍄 Gourmet Oyster Mushroom Potential:</span>
+                <strong id="calc-res-mushrooms" style="color:#ffffff;">40 kg</strong>
+              </div>
+              <div class="calc-result-row">
+                <span>🧪 Liquid Bio-Enzyme / Jeevamrutha:</span>
+                <strong id="calc-res-enzyme" style="color:#93c5fd;">150 Liters</strong>
+              </div>
+              <div class="calc-result-row" style="border-bottom:none; padding-top:4px;">
+                <span style="font-weight:800; font-size:0.92rem;">💰 Total Wealth Value Generated:</span>
+                <strong id="calc-res-total-value"
+                  style="font-family:var(--font-heading); font-size:1.35rem; color:#4ade80;">₹14,500</strong>
+              </div>
+
+              <button class="btn-upcycle-start" onclick="App.initiateUpcycleBatch()">
+                <span>♻️</span> <span>Initiate Circular Upcycling Batch</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================
+       MODAL 1: DETAILED 16-METRIC ZONE INSPECTOR
+       ======================================================== -->
+  <div id="zone-details-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <h2 id="modal-zone-title">Zone 01 Details</h2>
+            <button class="btn-read-aloud" onclick="if(App.selectedZone) VoiceAssistant.speakZone(App.selectedZone.id)"
+              title="Listen to Zone Telemetry / ज़ोन की रिपोर्ट सुनें">
+              🔊 <span data-i18n="listenBtn">सुनें</span>
+            </button>
+          </div>
+          <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:2px;">
+            <span id="modal-status" class="badge-healthy" style="padding:2px 8px; border-radius:10px;">Healthy</span> •
+            <span id="modal-suitability">96% Match</span>
+          </div>
+        </div>
+        <button id="close-zone-modal" class="close-btn" aria-label="Close Modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="telemetry-grid-modal">
+          <div class="t-metric-cell">
+            <div class="t-label">Current Crop</div>
+            <div id="modal-crop-name" class="t-value">Bell Peppers</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Recommended Crop</div>
+            <div id="modal-recommended" class="t-value text-success">Bell Peppers</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Soil Moisture</div>
+            <div id="modal-soil-moisture" class="t-value">52%</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Soil Temperature</div>
+            <div id="modal-soil-temp" class="t-value">24.2°C</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Air Temperature</div>
+            <div id="modal-air-temp" class="t-value">26.8°C</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Air Humidity</div>
+            <div id="modal-humidity" class="t-value">65%</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Soil pH</div>
+            <div id="modal-ph" class="t-value">6.4</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Conductivity (EC)</div>
+            <div id="modal-ec" class="t-value">1.2 dS/m</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Water Requirement</div>
+            <div id="modal-water-req" class="t-value">3.8 mm/day</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Irrigation Status</div>
+            <div id="modal-irrigation-status" class="t-value text-primary-water">Standby</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Growth Stage</div>
+            <div id="modal-growth-stage" class="t-value" style="font-size:0.88rem;">Flowering (DAS: 42)</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Plant Health</div>
+            <div id="modal-plant-health" class="t-value text-success">94%</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Disease Risk</div>
+            <div id="modal-disease-risk" class="t-value">6% (Low)</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Water Stress</div>
+            <div id="modal-water-stress" class="t-value text-success">Low</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Nutrient Stress</div>
+            <div id="modal-nutrient-stress" class="t-value text-success">Low</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Estimated Yield</div>
+            <div id="modal-yield" class="t-value">1,850 kg</div>
+          </div>
+          <div class="t-metric-cell" style="grid-column: span 2;">
+            <div class="t-label">Soil N-P-K Levels</div>
+            <div id="modal-npk" class="t-value" style="font-size:0.9rem;">N: 72 ppm | P: 45 ppm | K: 190 ppm</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Next Irrigation Time</div>
+            <div id="modal-next-irrigation" class="t-value" style="font-size:0.85rem;">Tomorrow, 06:30 AM</div>
+          </div>
+        </div>
+
+        <div class="modal-actions-bar">
+          <button class="btn-irrig btn-start"
+            onclick="App.showToast('Triggered 15-min precision drip for ' + App.selectedZone.name)">
+            💧 Trigger Zone Irrigation (15 min)
+          </button>
+          <button class="btn-soil-zone-link" onclick="App.openZoneSoilProfile(App.selectedZone.id)"
+            style="background:var(--primary-deep); color:#ffffff; font-weight:700; border-radius:var(--radius-md); padding:8px 14px; border:none; cursor:pointer;">
+            🌱 Inspect Soil Fertility Profile →
+          </button>
+          <button class="btn-irrig btn-mode"
+            onclick="App.showToast('Initiating multispectral drone scan on ' + App.selectedZone.name)">
+            🛰️ Run AI Foliar Scan
+          </button>
+          <button class="btn-pest-zone-link" onclick="App.inspectZonePestAttack(App.selectedZone.id)">
+            🐛 Check Pest Attack & Organic Remedy
+          </button>
+          <button class="btn-irrig btn-mode" style="margin-left:auto;" onclick="App.closeZoneModal()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+           MODAL 2: ESP32 HARDWARE INTEGRATION & IOT BRIDGE
+           ======================================================== -->
+  <div id="iot-settings-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h2>⚙️ ESP32 Hardware Integration & IoT Mesh</h2>
+          <div style="font-size:0.78rem; color:var(--text-secondary); margin-top:2px;">
+            Hardware Bridge Ready • REST / WebSocket / MQTT Connector
+          </div>
+        </div>
+        <button id="close-iot-modal" class="close-btn" aria-label="Close Settings">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div
+          style="background:#f0fdf4; border:1px solid var(--primary-border); border-radius:var(--radius-md); padding:14px; margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong>ESP32 Gateway Bridge Status:</strong>
+            <span class="badge-healthy" style="padding:2px 8px; border-radius:10px;">Live Simulated Mesh Active</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--primary-deep); margin-top:4px;">
+            This prototype is designed to ingest real telemetry from an ESP32 or ESP8266 microcontroller network with
+            soil moisture probes, DHT22, and solenoid relay boards.
+          </p>
+        </div>
+
+        <div class="telemetry-grid-modal" style="grid-template-columns:1fr 1fr;">
+          <div class="t-metric-cell">
+            <div class="t-label">Gateway IP Address</div>
+            <div class="t-value" style="font-family:var(--font-mono); font-size:0.95rem;">192.168.1.108</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Gateway MAC</div>
+            <div class="t-value" style="font-family:var(--font-mono); font-size:0.95rem;">24:6F:28:9B:4A:12</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">Firmware Version</div>
+            <div class="t-value" style="font-family:var(--font-mono); font-size:0.95rem;">ESP32-AgriSense-v2.8.4</div>
+          </div>
+          <div class="t-metric-cell">
+            <div class="t-label">LoRa Mesh Signal (RSSI)</div>
+            <div class="t-value text-success">-64 dBm (Strong)</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">ESP32
+            Ingestion JSON Schema:</span>
+          <pre
+            style="background:#0f172a; color:#a7f3d0; padding:12px; border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.74rem; overflow-x:auto; margin-top:6px;">
+{
+  "gatewayId": "GW-ONE-ACRE-01",
+  "zone": "zone-4",
+  "moisture": 38.5,
+  "soilTemp": 25.2,
+  "airTemp": 27.8,
+  "ph": 6.5,
+  "ec": 1.1,
+  "pumpRelay": 1
+}</pre>
+          <!-- Firebase Realtime Database Integration Card -->
+          <div
+            style="background:var(--bg-card-subtle); border:1.5px solid var(--border-color); border-radius:var(--radius-lg); padding:16px; margin-top:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:1.2rem;">🔥</span>
+                <div>
+                  <h4 style="font-size:0.9rem; font-weight:800; color:var(--text-primary); margin:0;">Firebase Database
+                    Cloud Sync</h4>
+                  <div style="font-size:0.72rem; color:var(--text-muted);">Syncs all 8 zone soil profiles to
+                    <code>soil_analysis/zone_1/</code> ... <code>zone_8/</code>
+                  </div>
+                </div>
+              </div>
+              <span id="firebase-sync-status-badge" class="sz-source-pill source-sensor"
+                style="font-size:0.7rem;">Active (Local + Cloud Ready)</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 140px; gap:10px; margin-bottom:10px;">
+              <input type="text" id="firebase-db-url-input" placeholder="https://your-project-id.firebaseio.com"
+                style="width:100%; padding:8px 12px; border:1px solid var(--border-color); border-radius:var(--radius-md); font-family:var(--font-mono); font-size:0.78rem;">
+              <button class="btn-soil-action btn-add-test" style="padding:6px 12px; font-size:0.75rem;"
+                onclick="SoilAnalysis.saveFirebaseConfig({ enabled: true, databaseUrl: document.getElementById('firebase-db-url-input').value }); App.showToast('Firebase configuration saved!');">
+                Save & Sync
+              </button>
+            </div>
+            <div style="font-size:0.7rem; color:var(--text-muted);">
+              Data schema matches: <code>current_test</code>, <code>test_history</code>, <code>soil_health</code>,
+              <code>recommendations</code>. Offline fallback active automatically.
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions-bar">
+          <button class="btn-irrig btn-start"
+            onclick="IoTBridge.startSimulation(); App.showToast('ESP32 Live Simulation Restarted');">
+            ⚡ Test Telemetry Burst
+          </button>
+          <button class="btn-irrig btn-mode" style="margin-left:auto;"
+            onclick="document.getElementById('iot-settings-modal').classList.remove('modal-open')">
+            Done
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 4: SMART QR TRACEABILITY & ECO-PACKAGING SEAL MODAL
+       Direct farm-to-consumer digital authentication (Zero Middlemen)
+       ======================================================== -->
+  <div id="qr-traceability-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="qr-modal-window">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; border-bottom:1.5px solid var(--primary-border); padding-bottom:12px; margin-bottom:14px;">
+        <div style="text-align:left;">
+          <h2
+            style="font-family:var(--font-heading); font-size:1.25rem; font-weight:800; color:var(--primary-deep); margin:0;">
+            🏷️ Farmgate Direct QR Traceability Seal
+          </h2>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
+            Certified Direct Produce • 100% Zero-Middleman Guarantee
+          </div>
+        </div>
+        <button id="close-qr-modal" class="close-btn" onclick="App.closeQrModal()">&times;</button>
+      </div>
+
+      <!-- Printable Eco-Label Frame -->
+      <div class="qr-label-preview-box">
+        <div
+          style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; font-weight:800; color:var(--primary-deep); border-bottom:1px dashed #86efac; padding-bottom:6px;">
+          <span>🌱 ONE ACRE INTELLIGENT FARM</span>
+          <span class="gain-badge" style="font-size:0.7rem;">D2C VERIFIED</span>
+        </div>
+
+        <div style="margin:12px 0 6px;">
+          <h3 id="qr-modal-crop-name"
+            style="font-family:var(--font-heading); font-size:1.3rem; font-weight:800; color:var(--text-primary); margin:0;">
+            Sweet Corn (Golden Bantam)
+          </h3>
+          <div id="qr-modal-hindi-name" style="font-size:0.8rem; color:var(--text-secondary); margin-top:2px;">
+            ताजा मीठा भुट्टा (देशी ऑर्गेनिक)
+          </div>
+        </div>
+
+        <!-- QR Graphic Display -->
+        <div class="qr-code-graphic">
+          <svg viewBox="0 0 100 100" width="100" height="100">
+            <!-- SVG QR code pattern -->
+            <rect width="100" height="100" fill="#ffffff" />
+            <!-- Corner Finder 1 -->
+            <rect x="5" y="5" width="26" height="26" fill="#064e3b" rx="3" />
+            <rect x="9" y="9" width="18" height="18" fill="#ffffff" />
+            <rect x="13" y="13" width="10" height="10" fill="#16a34a" />
+            <!-- Corner Finder 2 -->
+            <rect x="69" y="5" width="26" height="26" fill="#064e3b" rx="3" />
+            <rect x="73" y="9" width="18" height="18" fill="#ffffff" />
+            <rect x="77" y="13" width="10" height="10" fill="#16a34a" />
+            <!-- Corner Finder 3 -->
+            <rect x="5" y="69" width="26" height="26" fill="#064e3b" rx="3" />
+            <rect x="9" y="73" width="18" height="18" fill="#ffffff" />
+            <rect x="13" y="77" width="10" height="10" fill="#16a34a" />
+            <!-- Data Cells -->
+            <rect x="36" y="8" width="6" height="6" fill="#064e3b" />
+            <rect x="46" y="8" width="6" height="6" fill="#064e3b" />
+            <rect x="56" y="8" width="6" height="6" fill="#16a34a" />
+            <rect x="36" y="18" width="6" height="6" fill="#16a34a" />
+            <rect x="46" y="24" width="6" height="6" fill="#064e3b" />
+            <rect x="56" y="18" width="6" height="6" fill="#064e3b" />
+            <rect x="8" y="36" width="6" height="6" fill="#064e3b" />
+            <rect x="8" y="46" width="6" height="6" fill="#16a34a" />
+            <rect x="8" y="56" width="6" height="6" fill="#064e3b" />
+            <rect x="18" y="36" width="6" height="6" fill="#16a34a" />
+            <rect x="24" y="46" width="6" height="6" fill="#064e3b" />
+            <rect x="18" y="56" width="6" height="6" fill="#064e3b" />
+            <rect x="36" y="36" width="8" height="8" fill="#064e3b" />
+            <rect x="48" y="36" width="8" height="8" fill="#16a34a" />
+            <rect x="60" y="36" width="8" height="8" fill="#064e3b" />
+            <rect x="36" y="48" width="8" height="8" fill="#16a34a" />
+            <rect x="48" y="48" width="8" height="8" fill="#064e3b" />
+            <rect x="60" y="48" width="8" height="8" fill="#16a34a" />
+            <rect x="36" y="60" width="8" height="8" fill="#064e3b" />
+            <rect x="48" y="60" width="8" height="8" fill="#16a34a" />
+            <rect x="60" y="60" width="8" height="8" fill="#064e3b" />
+            <rect x="74" y="36" width="6" height="6" fill="#064e3b" />
+            <rect x="84" y="46" width="6" height="6" fill="#16a34a" />
+            <rect x="74" y="56" width="6" height="6" fill="#064e3b" />
+            <rect x="36" y="74" width="6" height="6" fill="#064e3b" />
+            <rect x="46" y="84" width="6" height="6" fill="#16a34a" />
+            <rect x="56" y="74" width="6" height="6" fill="#064e3b" />
+            <rect x="74" y="74" width="6" height="6" fill="#16a34a" />
+            <rect x="84" y="74" width="6" height="6" fill="#064e3b" />
+            <rect x="74" y="84" width="6" height="6" fill="#064e3b" />
+            <rect x="84" y="84" width="6" height="6" fill="#16a34a" />
+          </svg>
+        </div>
+
+        <div id="qr-modal-batch-code"
+          style="font-family:var(--font-mono); font-size:0.8rem; font-weight:800; color:var(--primary-deep); letter-spacing:1px;">
+          QR-OAF-CORN-Z04-2026
+        </div>
+
+        <!-- Specifications Grid -->
+        <div
+          style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; text-align:left; font-size:0.74rem;">
+          <div style="background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #dcfce7;">
+            <div style="color:var(--text-muted); font-size:0.68rem; text-transform:uppercase;">Harvested Plot:</div>
+            <strong id="qr-modal-zone">Zone 04 (Sweet Corn)</strong>
+          </div>
+          <div style="background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #dcfce7;">
+            <div style="color:var(--text-muted); font-size:0.68rem; text-transform:uppercase;">Harvest Timestamp:</div>
+            <strong id="qr-modal-harvest-time">Today, 05:45 AM (Dew Fresh)</strong>
+          </div>
+          <div style="background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #dcfce7;">
+            <div style="color:var(--text-muted); font-size:0.68rem; text-transform:uppercase;">Chemical Pesticide:</div>
+            <strong id="qr-modal-chemical" style="color:#15803d;">0.00 ppm • 100% Organic</strong>
+          </div>
+          <div style="background:#ffffff; padding:6px 10px; border-radius:6px; border:1px solid #dcfce7;">
+            <div style="color:var(--text-muted); font-size:0.68rem; text-transform:uppercase;">Packaging Format:</div>
+            <strong id="qr-modal-pack-type">Eco Kraft Box (10 Cobs)</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:10px; font-size:0.7rem; color:var(--text-secondary); text-align:center;">
+          🔒 Authenticated by One-Acre IoT Farm Gateway • Direct Consumer Escrow
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+        <button class="btn-irrig btn-start" onclick="App.simulateBuyerScan()"
+          style="padding:8px 16px; font-size:0.82rem;">
+          📱 Simulate Buyer QR Scan
+        </button>
+        <button class="btn-irrig btn-mode" onclick="App.printQrLabel()" style="padding:8px 16px; font-size:0.82rem;">
+          🖨️ Print 4×6 Eco-Label
+        </button>
+        <button class="btn-irrig btn-mode" onclick="App.closeQrModal()" style="padding:8px 16px; font-size:0.82rem;">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL: ADD / EDIT LABORATORY SOIL TEST FORM
+       ======================================================== -->
+  <div id="soil-test-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window" style="max-width: 800px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h2 id="soil-modal-title">Add Laboratory Soil Test</h2>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
+            Input accredited laboratory measurements to recalculate Soil Health Score & AI Crop Suitability
+          </div>
+        </div>
+        <button class="close-btn" onclick="document.getElementById('soil-test-modal').classList.remove('modal-open')"
+          aria-label="Close Modal">&times;</button>
+      </div>
+
+      <form id="soil-test-form" onsubmit="SoilAnalysis.saveSoilTestForm(event)" class="modal-body"
+        style="max-height: 72vh; overflow-y: auto;">
+        <input type="hidden" id="form-zone-id" value="zone-1">
+
+        <!-- Top Metadata Row -->
+        <div
+          style="display:grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap:12px; margin-bottom:16px;">
+          <div>
+            <label
+              style="font-size:0.72rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Sample
+              Serial ID</label>
+            <input type="text" id="form-sample-id" required
+              style="width:100%; padding:7px 10px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.8rem; font-family:var(--font-mono);">
+          </div>
+          <div>
+            <label
+              style="font-size:0.72rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Testing
+              Date</label>
+            <input type="date" id="form-test-date" required
+              style="width:100%; padding:7px 10px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.8rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.72rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Testing
+              Laboratory</label>
+            <input type="text" id="form-lab-name" required
+              style="width:100%; padding:7px 10px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.8rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.72rem; font-weight:700; color:var(--text-muted); display:block; margin-bottom:4px;">Data
+              Source</label>
+            <select id="form-source-type"
+              style="width:100%; padding:7px 10px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.8rem;">
+              <option value="lab">🔬 Verified Laboratory Certificate</option>
+              <option value="sensor">📡 Live Sensor / ESP32</option>
+              <option value="manual">✍️ Manual Farmer Entry</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 1: Basic Physical Properties -->
+        <h4
+          style="font-size:0.85rem; font-weight:800; color:var(--primary-deep); margin:14px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          1. Basic Soil Properties</h4>
+        <div
+          style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:16px;">
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">pH
+              (0 - 14)</label>
+            <input type="number" id="form-ph" step="0.1" min="3.0" max="11.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">EC
+              (dS/m)</label>
+            <input type="number" id="form-ec" step="0.1" min="0" max="10.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Moisture
+              (%)</label>
+            <input type="number" id="form-moisture" step="1" min="5" max="95" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Soil
+              Texture</label>
+            <input type="text" id="form-texture" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Compaction
+              (PSI)</label>
+            <input type="number" id="form-compaction" min="40" max="450" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+        </div>
+
+        <!-- Section 2: Macronutrients -->
+        <h4
+          style="font-size:0.85rem; font-weight:800; color:var(--primary-deep); margin:14px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          2. Macronutrients (Primary & Secondary)</h4>
+        <div
+          style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:16px;">
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Nitrogen
+              N (kg/ha)</label>
+            <input type="number" id="form-n" min="10" max="900" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Phosphorus
+              P (kg/ha)</label>
+            <input type="number" id="form-p" step="0.1" min="1" max="150" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Potassium
+              K (kg/ha)</label>
+            <input type="number" id="form-k" min="20" max="800" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Organic
+              Carbon (%)</label>
+            <input type="number" id="form-oc" step="0.01" min="0.05" max="3.5" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Sulphur
+              S (mg/kg)</label>
+            <input type="number" id="form-s" step="0.1" min="1" max="100" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+        </div>
+
+        <!-- Section 3: Micronutrients -->
+        <h4
+          style="font-size:0.85rem; font-weight:800; color:var(--primary-deep); margin:14px 0 8px; border-bottom:1px solid var(--border-color); padding-bottom:4px;">
+          3. Micronutrients (ppm / mg/kg)</h4>
+        <div
+          style="display:grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap:10px; margin-bottom:16px;">
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Zinc
+              Zn (ppm)</label>
+            <input type="number" id="form-zn" step="0.01" min="0.01" max="10.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Iron
+              Fe (ppm)</label>
+            <input type="number" id="form-fe" step="0.1" min="0.1" max="30.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Copper
+              Cu (ppm)</label>
+            <input type="number" id="form-cu" step="0.01" min="0.01" max="5.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Manganese
+              Mn (ppm)</label>
+            <input type="number" id="form-mn" step="0.1" min="0.1" max="25.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+          <div>
+            <label
+              style="font-size:0.7rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:3px;">Boron
+              B (ppm)</label>
+            <input type="number" id="form-b" step="0.01" min="0.01" max="5.0" required
+              style="width:100%; padding:6px 8px; border:1px solid var(--border-color); border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.82rem;">
+          </div>
+        </div>
+
+        <div class="modal-actions-bar" style="margin-top:20px;">
+          <button type="submit" class="btn-soil-action btn-add-test">
+            💾 Save Soil Test & Recalculate
+          </button>
+          <button type="button" class="btn-soil-action btn-edit-test"
+            onclick="document.getElementById('soil-test-modal').classList.remove('modal-open')">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL: HISTORICAL SOIL TEST RECORDS COMPARISON
+       ======================================================== -->
+  <div id="soil-history-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window" style="max-width: 850px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h2 id="history-modal-title">Historical Soil Test Logs</h2>
+          <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
+            Compare soil health evolution, pH changes, and nutrient replenishment across test dates
+          </div>
+        </div>
+        <button class="close-btn" onclick="document.getElementById('soil-history-modal').classList.remove('modal-open')"
+          aria-label="Close Modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="soil-report-table">
+            <thead>
+              <tr>
+                <th>Test Date</th>
+                <th>Sample ID</th>
+                <th>Testing Lab</th>
+                <th>Score</th>
+                <th>pH</th>
+                <th>OC %</th>
+                <th>N/P/K (kg/ha)</th>
+                <th>Agronomic Notes</th>
+              </tr>
+            </thead>
+            <tbody id="history-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-actions-bar" style="margin-top:16px;">
+          <button class="btn-soil-action btn-edit-test" style="margin-left:auto;"
+            onclick="document.getElementById('soil-history-modal').classList.remove('modal-open')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable PDF Certificate Container (Targeted by @media print) -->
+  <div id="soil-print-certificate"></div>
+
+  <!-- ========================================================
+       MODAL 3: KISAN MITRA VOICE ASSISTANT MODAL
+       Two-way voice communication & translation for rural farmers
+       ======================================================== -->
+  <div id="kisan-voice-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="kisan-modal-window">
+      <div class="modal-header" style="background:#f0fdf4; border-bottom:1.5px solid var(--primary-border);">
+        <div class="modal-title-wrap">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:1.6rem;">🌾</span>
+            <div>
+              <h2 data-i18n="voiceModalTitle" style="color:var(--primary-deep); font-size:1.25rem;">किसान मित्र • आवाज
+                सहायक</h2>
+              <div data-i18n="voiceModalSubtitle"
+                style="font-size:0.78rem; color:var(--text-secondary); margin-top:2px;">
+                अपनी मातृभाषा में बोलें या सुनें। पानी, फसल, मौसम, जंगली जानवर या कमाई के बारे में पूछें।
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="lang-select-wrap">
+            <span>🌐</span>
+            <select id="modal-language-select" class="lang-select" aria-label="Modal Language Selector"></select>
+          </div>
+          <button id="close-voice-modal" class="close-btn" aria-label="Close Voice Assistant">&times;</button>
+        </div>
+      </div>
+
+      <div class="modal-body" style="padding:18px; overflow-y:auto;">
+        <!-- Hero Mic & Waveform Card -->
+        <div class="voice-hero-card">
+          <button id="voice-assistant-mic-btn" class="voice-mic-main" aria-label="Tap to Speak"
+            title="माइक दबाएं और बोलें">
+            <span>🎙️</span>
+          </button>
+          <div id="voice-mic-status-text" class="voice-mic-status" data-i18n="micTapToSpeak">
+            माइक दबाएं और बोलें
+          </div>
+
+          <div id="voice-sound-waves" class="sound-wave-bars">
+            <div class="sound-wave-bar"></div>
+            <div class="sound-wave-bar"></div>
+            <div class="sound-wave-bar"></div>
+            <div class="sound-wave-bar"></div>
+            <div class="sound-wave-bar"></div>
+          </div>
+
+          <!-- User Transcript Bubble -->
+          <div id="voice-user-transcript" class="voice-transcript-bubble">
+            “माइक बटन दबाकर सवाल पूछें...”
+          </div>
+        </div>
+
+        <!-- Assistant Answer Card -->
+        <div class="voice-answer-box">
+          <div class="voice-answer-header">
+            <span class="voice-answer-title">🌱 किसान मित्र का उत्तर:</span>
+            <div class="voice-audio-ctrls">
+              <button id="btn-voice-replay" class="btn-audio-ctrl" title="फिर से सुनें">
+                🔊 <span data-i18n="listenBtn">सुनें</span>
+              </button>
+              <button id="btn-voice-stop" class="btn-audio-ctrl" title="आवाज रोकें">
+                ⏹️ <span data-i18n="stopAudioBtn">रोकें</span>
+              </button>
+            </div>
+          </div>
+          <div id="voice-answer-text" class="voice-answer-text">
+            नमस्ते किसान भाई! मैं आपका डिजिटल सहायक किसान मित्र हूँ। आप अपनी मातृभाषा में खेत के पानी, फसल, मौसम, जंगली
+            जानवर या कमाई के बारे में कोई भी सवाल पूछ सकते हैं।
+          </div>
+        </div>
+
+        <!-- Quick One-Touch Voice Inquiries Grid -->
+        <div>
+          <div
+            style="font-size:0.8rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:6px;"
+            data-i18n="quickQuestionsTitle">
+            एक क्लिक में पूछें और सुनें:
+          </div>
+          <div class="voice-quick-grid">
+            <button class="voice-quick-chip" data-query="water">
+              <span>💧</span>
+              <span class="chip-text">पानी और सिंचाई</span>
+            </button>
+            <button class="voice-quick-chip" data-query="crops">
+              <span>🌱</span>
+              <span class="chip-text">फसल की सेहत</span>
+            </button>
+            <button class="voice-quick-chip" data-query="pests">
+              <span>🐛</span>
+              <span class="chip-text" data-i18n="qPestChip">कीट व जैविक इलाज</span>
+            </button>
+            <button class="voice-quick-chip" data-query="pump">
+              <span>⚡</span>
+              <span class="chip-text">पंप चालू/बंद</span>
+            </button>
+            <button class="voice-quick-chip" data-query="animals">
+              <span>🐗</span>
+              <span class="chip-text">जंगली जानवर</span>
+            </button>
+            <button class="voice-quick-chip" data-query="weather">
+              <span>🌦️</span>
+              <span class="chip-text">मौसम और बारिश</span>
+            </button>
+            <button class="voice-quick-chip" data-query="income">
+              <span>💰</span>
+              <span class="chip-text">कमाई और मुनाफा</span>
+            </button>
+            <button class="voice-quick-chip" data-query="zone4">
+              <span>🗺️</span>
+              <span class="chip-text">ज़ोन 4 की स्थिति</span>
+            </button>
+            <button class="voice-quick-chip" data-query="alerts">
+              <span>🚨</span>
+              <span class="chip-text">ताज़ा चेतावनियां</span>
+            </button>
+            <button class="voice-quick-chip" data-query="postharvest">
+              <span>📦</span>
+              <span class="chip-text" data-i18n="qPostHarvestChip">सीधी बिक्री व कचरा उपयोग</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Fallback Text Input Form -->
+        <div class="voice-fallback-bar">
+          <input type="text" id="voice-text-input" class="voice-input-text" placeholder="या यहाँ अपना सवाल लिखें..."
+            data-i18n="voicePromptPlaceholder">
+          <button id="voice-send-btn" class="btn-voice-send">पूछें</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button for Kisan Mitra Voice Buddy -->
+  <button id="kisan-voice-fab" class="kisan-voice-fab" title="आवाज से बात करें / Talk with Voice"
+    aria-label="Voice Assistant">
+    <span class="kisan-voice-fab-icon">🎙️</span>
+    <span class="kisan-voice-fab-label" data-i18n="voiceBuddyBtn">किसान मित्र</span>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="js/ambientBg.js"></script>
+  <script src="js/farmData.js"></script>
+  <script src="js/soilData.js"></script>
+  <script src="js/soilAnalysis.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/voiceAssistant.js"></script>
+  <script src="js/iotBridge.js"></script>
+  <script src="js/farmCharts.js"></script>
+  <script src="js/farmSecurity.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

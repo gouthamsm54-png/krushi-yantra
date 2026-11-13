@@ -1,0 +1,9 @@
+{
+  "name": "krushi-yantra",
+  "version": "1.0.0",
+  "description": "Krushi Yantra - Intelligent Precision Agricultural Monitoring, Soil Testing, and Farm Automation Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
