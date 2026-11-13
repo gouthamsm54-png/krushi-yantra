@@ -41,6 +41,9 @@ const App = {
     if (window.SoilAnalysis) {
       window.SoilAnalysis.init();
     }
+    if (window.CropReplanning) {
+      window.CropReplanning.init();
+    }
     if (window.FarmSecurity) window.FarmSecurity.init();
     if (window.IoTBridge) {
       window.IoTBridge.init();
@@ -826,6 +829,16 @@ const App = {
           if (targetId === "#soil-analysis") {
             setTimeout(() => {
               if (window.SoilAnalysis) SoilAnalysis.renderAllCharts();
+            }, 100);
+          }
+          if (targetId === "#crop-replanning") {
+            setTimeout(() => {
+              if (window.CropReplanning) CropReplanning.renderReplanningGrid();
+            }, 100);
+          }
+          if (targetId === "#farm-history") {
+            setTimeout(() => {
+              if (window.CropReplanning) CropReplanning.renderHistorySection();
             }, 100);
           }
         }

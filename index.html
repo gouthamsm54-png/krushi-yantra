@@ -86,6 +86,11 @@
         <span data-i18n="navIrrigation">Irrigation</span>
       </a>
 
+      <a href="#crop-replanning" class="sidebar-nav-item" id="nav-link-replanning">
+        <span class="nav-icon">🔄</span>
+        <span>Crop Replanning</span>
+      </a>
+
       <a href="#plant-health" class="sidebar-nav-item">
         <span class="nav-icon">🩺</span>
         <span data-i18n="navPlantHealth">Plant Health</span>
@@ -109,6 +114,11 @@
       <a href="#farm-economics" class="sidebar-nav-item">
         <span class="nav-icon">💰</span>
         <span data-i18n="navEconomics">Economics</span>
+      </a>
+
+      <a href="#farm-history" class="sidebar-nav-item" id="nav-link-history">
+        <span class="nav-icon">📜</span>
+        <span>My Farm History</span>
       </a>
 
       <a href="#post-harvest-market" class="sidebar-nav-item">
@@ -869,6 +879,46 @@
       </section>
 
       <!-- ========================================================
+           SECTION: CROP REPLANNING & DECISION SUPPORT SYSTEM (NEW)
+           Self-service crop replacement across 8 independent zones
+           ======================================================== -->
+      <section id="crop-replanning" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title">🔄 Self-Service Crop Replanning & Decision Support</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('crop-replanning')"
+              title="Listen to replanning guide / फसल बदलाव रिपोर्ट सुनें">
+              🔊 <span>सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;">
+            Change crops in any of the 8 individual zones independently without technical dependency. Evaluated against ICAR & UAS Bengaluru Package of Practices with mid-season safety checks.
+          </div>
+        </div>
+
+        <!-- Demonstration Banner (Section 11) -->
+        <div class="replanning-demo-banner">
+          <div style="display:flex; align-items:center; gap:12px; flex:1;">
+            <span style="font-size:2rem;">⚡</span>
+            <div>
+              <strong style="color:var(--primary-deep); font-size:0.95rem;">Interactive Demonstration Mode</strong>
+              <div style="font-size:0.8rem; color:var(--text-secondary); margin-top:2px;">
+                Walk through the official test scenario: <strong>Zone 03 (Tomato at Flowering Stage) → French Beans replacement</strong> with 14-parameter soil validation, mid-season safety assessment, and live side-by-side economic delta.
+              </div>
+            </div>
+          </div>
+          <button id="btn-run-replanning-demo" class="btn-run-demo" onclick="CropReplanning.runDemoScenario()">
+            <span>🚀 Run Zone 03 Demo</span>
+          </button>
+        </div>
+
+        <!-- 8-Zone Visual Replanning Grid -->
+        <div id="replanning-zones-grid" class="replanning-zones-grid">
+          <!-- Populated dynamically by CropReplanning.renderReplanningGrid() -->
+        </div>
+      </section>
+
+      <!-- ========================================================
            SECTION 5: PLANT HEALTH MONITORING & AI SCREENING
            ======================================================== -->
       <section id="plant-health" class="section-container">
@@ -1598,6 +1648,79 @@
                 optimal drip fertigation management.
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           SECTION: MY FARM HISTORY (SECTION 6)
+           Season-wise crop replacement logs, performance & learning records
+           ======================================================== -->
+      <section id="farm-history" class="section-container">
+        <div class="section-header-row">
+          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h2 class="section-title">📜 My Farm History & Adaptive Learning</h2>
+            <button class="btn-read-aloud" onclick="VoiceAssistant.speakSection('farm-history')"
+              title="Listen to farm history / फार्म इतिहास सुनें">
+              🔊 <span>सुनें</span>
+            </button>
+          </div>
+          <div class="section-subtitle" style="width:100%;">
+            Comprehensive historical logs of zone crop changes, previous water consumption, cultivation costs, and actual harvested yields.
+          </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div class="history-kpis-grid">
+          <div class="history-kpi-card">
+            <span class="hk-lbl">Total Replanning Events</span>
+            <span class="hk-val" id="hist-kpi-total-replans">2</span>
+            <span class="hk-sub">Across 8 Independent Zones</span>
+          </div>
+          <div class="history-kpi-card">
+            <span class="hk-lbl">Cumulative Profit Gain</span>
+            <span class="hk-val text-success" id="hist-kpi-profit-gain">+₹38,200</span>
+            <span class="hk-sub">Via Optimized High-Margin Rotations</span>
+          </div>
+          <div class="history-kpi-card">
+            <span class="hk-lbl">Irrigation Water Conserved</span>
+            <span class="hk-val" style="color:var(--water);">28,000 L</span>
+            <span class="hk-sub">Via Low-Duty Pulse/Cereal Breaks</span>
+          </div>
+          <div class="history-kpi-card">
+            <span class="hk-lbl">Soil Nitrogen Restored</span>
+            <span class="hk-val" style="color:#059669;">+65 kg N</span>
+            <span class="hk-sub">Natural Rhizobium Fixation</span>
+          </div>
+        </div>
+
+        <div class="history-table-wrapper-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+            <h4 style="font-family:var(--font-heading); font-size:1rem; color:var(--primary-deep); margin:0;">
+              Historical Crop Rotation & Yield Logs
+            </h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">
+              Data synced with ESP32 Mesh & Laboratory Soil Certificates
+            </span>
+          </div>
+
+          <div style="overflow-x:auto;">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Zone</th>
+                  <th>Previous → New Crop</th>
+                  <th>Agronomic Suitability</th>
+                  <th>Farmer Reason</th>
+                  <th>Projected Net Profit</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="farm-history-table-body">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -2448,6 +2571,135 @@
   </div>
 
   <!-- ========================================================
+       MODAL: CROP REPLACEMENT WORKFLOW WIZARD (NEW)
+       ======================================================== -->
+  <div id="crop-replanning-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-window" style="max-width: 960px;">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:1.6rem;">🔄</span>
+            <div>
+              <h2 id="replan-modal-title">Self-Service Crop Replanning Portal</h2>
+              <div style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">
+                Krushi Yantra Decision Support System • ICAR & UAS Bengaluru Package of Practices
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <!-- Zone Selector Dropdown (Step 1) -->
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">ZONE:</span>
+            <select id="replan-modal-zone-select" class="replan-zone-select" onchange="CropReplanning.onZoneSelectorChange(this.value)">
+              <option value="zone-1">Zone 01 • Bell Peppers</option>
+              <option value="zone-2">Zone 02 • Cherry Tomatoes</option>
+              <option value="zone-3" selected>Zone 03 • Tomato (Flowering)</option>
+              <option value="zone-4">Zone 04 • Sweet Corn</option>
+              <option value="zone-5">Zone 05 • Vine Tomatoes</option>
+              <option value="zone-6">Zone 06 • Baby Spinach</option>
+              <option value="zone-7">Zone 07 • Cucumbers</option>
+              <option value="zone-8">Zone 08 • Red Cabbage</option>
+            </select>
+          </div>
+          <button class="close-btn" onclick="CropReplanning.closeReplanningModal()" aria-label="Close Modal">&times;</button>
+        </div>
+      </div>
+
+      <div class="modal-body" style="max-height:76vh; overflow-y:auto; padding:22px;">
+        <!-- STEP 1: Current Zone Standing Summary -->
+        <div id="replan-active-zone-header"></div>
+
+        <!-- STEP 4: Mid-Season Crop Stage Safety Banner (Critical Sunk Cost Check) -->
+        <div id="replan-stage-safety-banner" style="margin:16px 0;"></div>
+
+        <!-- STEP 2: Select New Crop (Searchable & Categorized List) -->
+        <div class="replan-step-box">
+          <div class="step-num-heading">
+            <span class="step-circle">2</span>
+            <div>
+              <h4 style="font-family:var(--font-heading); font-size:1rem; margin:0; color:var(--primary-deep);">Select Proposed Replacement Crop</h4>
+              <span style="font-size:0.74rem; color:var(--text-muted);">Structured agronomic database verified by UAS Bengaluru & ICAR</span>
+            </div>
+          </div>
+
+          <!-- Category filter pills & Search bar -->
+          <div class="crop-catalog-filters-bar">
+            <div class="crop-category-tabs">
+              <button class="crop-cat-pill active" data-cat="all" onclick="CropReplanning.filterByCategory('all')">All Crops (14)</button>
+              <button class="crop-cat-pill" data-cat="pulses" onclick="CropReplanning.filterByCategory('pulses')">🫘 Pulses & Legumes</button>
+              <button class="crop-cat-pill" data-cat="cereals" onclick="CropReplanning.filterByCategory('cereals')">🌾 Cereals & Millets</button>
+              <button class="crop-cat-pill" data-cat="vegetables" onclick="CropReplanning.filterByCategory('vegetables')">🥬 Vegetables</button>
+              <button class="crop-cat-pill" data-cat="fruits" onclick="CropReplanning.filterByCategory('fruits')">🍉 Fruits</button>
+              <button class="crop-cat-pill" data-cat="oilseeds" onclick="CropReplanning.filterByCategory('oilseeds')">🥜 Oilseeds</button>
+            </div>
+            <div class="crop-search-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="replan-crop-search" placeholder="Search crop, variety, or season..." class="crop-search-input">
+            </div>
+          </div>
+
+          <!-- Catalog Cards Grid -->
+          <div id="replan-crops-catalog" class="crop-catalog-grid"></div>
+        </div>
+
+        <!-- STEP 3: Automatic 14-Parameter Suitability Check -->
+        <div class="replan-step-box" style="margin-top:20px;">
+          <div class="step-num-heading">
+            <span class="step-circle">3</span>
+            <div>
+              <h4 style="font-family:var(--font-heading); font-size:1rem; margin:0; color:var(--primary-deep);">Automatic Agronomic Suitability Verification</h4>
+              <span style="font-size:0.74rem; color:var(--text-muted);">Cross-referenced with zone soil pH, EC, OC, NPK, moisture, drainage, season, and rotation rules</span>
+            </div>
+          </div>
+
+          <div id="replan-suitability-verdict-box" style="margin-top:12px;"></div>
+        </div>
+
+        <!-- STEP 5: Side-by-Side Crop Comparison & Real-Time Economic Delta -->
+        <div class="replan-step-box" style="margin-top:20px;">
+          <div class="step-num-heading">
+            <span class="step-circle">5</span>
+            <div>
+              <h4 style="font-family:var(--font-heading); font-size:1rem; margin:0; color:var(--primary-deep);">Side-by-Side Economic & Agronomic Comparison</h4>
+              <span style="font-size:0.74rem; color:var(--text-muted);">Compare investment, water requirements, duration, expected yields, and net profit margins</span>
+            </div>
+          </div>
+
+          <div id="replan-side-by-side-comparison" style="margin-top:12px;"></div>
+        </div>
+
+        <!-- Confirmation Action Row -->
+        <div class="replan-modal-actions-bar">
+          <button class="btn-replan-cancel" onclick="CropReplanning.closeReplanningModal()">Cancel</button>
+          <button class="btn-replan-proceed" onclick="CropReplanning.requestConfirmation()">
+            <span>✓</span> Review & Confirm Crop Change
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Dialog (Section 5) -->
+  <div id="replan-confirmation-dialog" class="replan-dialog-backdrop" style="display:none;">
+    <div class="replan-dialog-card">
+      <div style="font-size:2.4rem; text-align:center; margin-bottom:8px;">⚠️</div>
+      <h3 style="font-family:var(--font-heading); font-size:1.15rem; color:var(--primary-deep); text-align:center; margin:0 0 10px;">
+        Confirm Crop Replacement
+      </h3>
+      <div id="replan-confirm-dialog-text" style="font-size:0.86rem; color:var(--text-primary); text-align:center; line-height:1.45; margin-bottom:18px;">
+        Are you sure you want to replace the crop?
+      </div>
+      <div class="replan-dialog-buttons">
+        <button class="btn-dialog-back" onclick="CropReplanning.cancelConfirmation()">Go Back</button>
+        <button class="btn-dialog-confirm" onclick="CropReplanning.executeConfirmedCropChange()">
+          Confirm Crop Change
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
        MODAL: ADD / EDIT LABORATORY SOIL TEST FORM
        ======================================================== -->
   <div id="soil-test-modal" class="modal-backdrop" aria-hidden="true">
@@ -2846,6 +3098,7 @@
   <script src="js/iotBridge.js"></script>
   <script src="js/farmCharts.js"></script>
   <script src="js/farmSecurity.js"></script>
+  <script src="js/cropReplanning.js"></script>
   <script src="js/app.js"></script>
 </body>
 
